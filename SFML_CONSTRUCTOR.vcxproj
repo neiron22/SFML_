@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="button_shape.cpp" />
+    <ClCompile Include="Shapes_list.cpp" />
     <ClCompile Include="slider.cpp" />
     <ClCompile Include="Constructor.cpp" />
     <ClCompile Include="Counter.cpp" />
@@ -152,6 +153,7 @@
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="button_shape.hpp" />
+    <ClInclude Include="Shapes_list.hpp" />
     <ClInclude Include="slider.hpp" />
     <ClInclude Include="Constructor.hpp" />
     <ClInclude Include="Counter.hpp" />

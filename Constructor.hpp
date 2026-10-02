@@ -12,19 +12,24 @@
 
 #include"slider.hpp"
 
+#include"Shapes_list.hpp"
+
 class Constructor{
 	bool mouse_clic_left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool mouse_clic_right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
 	Button deleted_button , vertex_button;
 
-	button_shape buttonPoligonplus , buttonPoligonminus;
+	button_shape buttonPoligonAdd , buttonPoligonDelet , size_increase , size_decrease ,
+		shape_add , shape_delete;
 	size_t poligon;
 
 	std::vector<Button*> buttons;
 
 	Model model;
 	Counter shape_Counter  , pointer_hsape_Counter , poligon_Counter;
+
+	Shapes_list shapes_list;
 
 
 	Color_indikator color_indicator;

@@ -62,6 +62,8 @@
 
 		void draw(sf::RenderWindow & window);
 
+		bool is_zahvat() { return zahvat_rect != nullptr; }
+
 		sf::Color getColor() { return color; }
 	
 	};

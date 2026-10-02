@@ -69,6 +69,9 @@
     <ClCompile Include="button_shape.cpp">
       <Filter>object\button</Filter>
     </ClCompile>
+    <ClCompile Include="Shapes_list.cpp">
+      <Filter>object\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="button_shape.hpp">
       <Filter>object\button</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes_list.hpp">
+      <Filter>object\model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

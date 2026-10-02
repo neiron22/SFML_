@@ -17,15 +17,42 @@ button_shape::button_shape(sf::Vector2f pos, Type_pressed type) : pos(pos),type(
 	rect.setPosition(pos);
 }
 
-void button_shape::update(sf::Vector2f mouse_pos, bool LKM, float dt) {
+//button_shape::button_shape(sf::Vector2f pos, Type_pressed type, sf::Vector2f size , float outSize = 5.f ){
+//	activate_diactivate = false; flag = false;
+//
+//	rect.setSize(size);
+//	rect.setOrigin(size * 0.5f);
+//
+//	rect.setOutlineThickness(outSize);
+//
+//	rect.setFillColor({ 0,0,0,0 });
+//	rect.setOutlineColor({ 70,70,70 });
+//
+//	rect.setPosition(pos);
+//}
+
+void button_shape::reSize(sf::Vector2f newSize, bool AddToCuttentValue){
+	if (AddToCuttentValue) { rect.setSize(rect.getSize() + newSize); return; }
+	rect.setSize(newSize);
+}
+
+void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 	sf::Vector2f delta = pos - mouse_pos;
 	sf::Vector2f distance = rect.getSize() * 0.5f;
 
 	bool isHovered = (std::fabs(delta.x) < distance.x && std::fabs(delta.y) < distance.y);
 
+	
+
 	switch (type)
 	{
-	case Type_pressed::Oane_clikc:
+	case Type_pressed::HoveredCursor:
+
+		if (isHovered) { activate_diactivate = true; }
+		else { activate_diactivate = false; }
+
+		break;
+	case Type_pressed::OaneClikc:
 
 		if (isHovered && LKM && !flag) {
 			activate_diactivate = true;
@@ -60,6 +87,7 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM, float dt) {
 	if (activate_diactivate) {
 		rect.setFillColor(sf::Color::White);
 	}
+	else if (isHovered) { rect.setFillColor({255,255,255,30}); }
 	else { rect.setFillColor({ 0,0,0,0 }); }
 }
 
@@ -67,3 +95,5 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM, float dt) {
 void button_shape::draw(sf::RenderWindow& window) {
 	window.draw(rect);
 }
+
+sf::Vector2f button_shape::get_pos(){return pos;}
