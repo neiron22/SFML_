@@ -16,9 +16,11 @@ public:
 
 	button_shape(sf::Vector2f pos, Type_pressed type = Type_pressed::On_off);
 
-	//button_shape(sf::Vector2f pos, Type_pressed type , sf::Vector2f size , float outSize = 5.f);
+	button_shape( sf::Vector2f size , float outSize,sf::Vector2f pos, Type_pressed type );
 
 	void reSize(sf::Vector2f newSize , bool AddToCuttentValue = false);
+
+	void move(sf::Vector2f vec);
 
 	void update(sf::Vector2f mouse_pos, bool LKM);
 

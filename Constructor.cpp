@@ -7,8 +7,6 @@ Constructor::Constructor() :
 	pointer_hsape_Counter({ 10,40 }),
 	poligon_Counter({ 220, 15 }, 22),
 
-	vertex_button(ButtonType::add_vertex_Triangles),
-	deleted_button(ButtonType::deleted_shape),
 	shape_add({340.f , 45.f} , Type_pressed::OaneClikc),
 	shape_delete({ 430.f , 45.f }, Type_pressed::OaneClikc),
 
@@ -17,10 +15,8 @@ Constructor::Constructor() :
 	silder_counter({ 600.f , 140.f }),
 
 	buttonPoligonAdd({ 260.f , 80.f }, Type_pressed::OaneClikc),
-	buttonPoligonDelet({ 200.f , 80.f }, Type_pressed::OaneClikc),
+	buttonPoligonDelet({ 200.f , 80.f }, Type_pressed::OaneClikc)
 
-	size_increase({80.f , 100.f} , Type_pressed::OaneClikc),
-	size_decrease({ 140.f , 100.f }, Type_pressed::OaneClikc)
 	{
 
 	sf::Vector2f point_pos{ 340, 45 };
@@ -28,14 +24,6 @@ Constructor::Constructor() :
 
 	poligon = 3;
 
-	buttons.push_back(&vertex_button);
-	buttons.push_back(&deleted_button);
-
-
-	for (auto& it : buttons) {
-		it->init(point_pos);
-		point_pos.x += distance;
-	}
 }
 
 void Constructor::update(sf::Vector2f mouse_pos, float dt) {
@@ -52,8 +40,7 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt) {
 	shape_delete.update(mouse_pos, LKM);
 
 
-	size_increase.update(mouse_pos, LKM);
-	size_decrease.update(mouse_pos, LKM);
+
 	
 
 	buttonPoligonAdd.update(mouse_pos, LKM);
@@ -72,7 +59,7 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt) {
 		shapes_list.add_object();
 	}
 	if (shape_delete.getClick()) {
-		model.Delete_shape(); 
+		model.DeleteShape(index);
 		shapes_list.delete_object(index);
 	}
 
@@ -86,16 +73,6 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt) {
 	shape_Counter.updateint(model.get_shape_count());
 	poligon_Counter.updatesize_t(poligon);
 	silder_counter.updateint(angle);
-
-
-	
-
-	
-
-	
-
-
-
 	
 }
 
@@ -122,10 +99,6 @@ void  Constructor::draw(sf::RenderWindow& window) {
 
 	slider_1.draw(window);
 	silder_counter.draw(window);
-
-
-	size_increase.draw(window);
-	size_decrease.draw(window);
 
 	shapes_list.draw(window);
 }

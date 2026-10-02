@@ -13,6 +13,7 @@ struct Shape_in_VertexArray{
 	size_t begin, end;
 	sf::Vector2f pos;
 	float radius , angle;
+	
 	sf::Color color;
 	Shape_in_VertexArray(size_t begin, size_t end  , float radius ,sf::Vector2f pos, float angle = 0) noexcept:
 		begin(begin), radius(radius), end(end), pos(pos), angle(angle), color(sf::Color::White) {}
@@ -20,18 +21,19 @@ struct Shape_in_VertexArray{
 
 class Model{
 	sf::VertexArray Vertarr;
-	std::vector<Shape_in_VertexArray> shapes;
 	size_t count_vertex;
+
+	std::vector<Shape_in_VertexArray> shapes;
+
 	sf::Vector2f mouse_delta_pos;
+
+	bool selecter_shape;
 
 	float p_2 = float(std::numbers::pi) * 2.f;
 	float to_radian = p_2 / 360.f;
 public:
 	
-	Model() noexcept {
-		Vertarr.setPrimitiveType(sf::Triangles); count_vertex = 0;
-		 mouse_delta_pos = { 0.f,0.f };
-	};
+	Model() noexcept;
 
 	void draw(sf::RenderWindow& window);
 

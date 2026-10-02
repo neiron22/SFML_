@@ -4,7 +4,7 @@
 #include<vector>
 #include<memory>
 
-#include"Button.hpp"
+//#include"Button.hpp"
 #include"button_shape.hpp"
 
 #include"Model.hpp"
@@ -18,9 +18,7 @@ class Constructor{
 	bool mouse_clic_left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool mouse_clic_right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
-	Button deleted_button , vertex_button;
-
-	button_shape buttonPoligonAdd , buttonPoligonDelet , size_increase , size_decrease ,
+	button_shape buttonPoligonAdd , buttonPoligonDelet ,
 		shape_add , shape_delete;
 	size_t poligon;
 

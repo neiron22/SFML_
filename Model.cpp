@@ -3,6 +3,12 @@
 
 #include"Button.hpp"
 
+Model::Model() noexcept
+{
+Vertarr.setPrimitiveType(sf::Triangles); count_vertex = 0;
+mouse_delta_pos = { 0.f,0.f }; selecter_shape = false;
+}
+
 void Model::draw(sf::RenderWindow & window) {
 	window.draw(Vertarr);
 }
@@ -138,12 +144,16 @@ bool Model::CursorToShape(sf::Vector2f point, size_t index) {
 void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
 {
 	if (indexSelectShape >= shapes.size()) { return; }
+
+	Shape_in_VertexArray& shape = shapes[indexSelectShape];
 	
-	if (CursorToShape(mouse_pos , indexSelectShape) && lkm) {
-		move_1_shape(shapes[indexSelectShape], mouse_pos - (Vertarr[shapes[indexSelectShape].begin].position + mouse_delta_pos));
+	if (!selecter_shape) { mouse_delta_pos = mouse_pos - (Vertarr[shape.begin].position); }
 
-		}
+	if (CursorToShape(mouse_pos , indexSelectShape) && lkm || selecter_shape) {
+		move_1_shape(shape, mouse_pos - (Vertarr[shape.begin].position + mouse_delta_pos));
+		selecter_shape = true;}
 
+	if (!lkm) { selecter_shape = false; }
 }
 
 

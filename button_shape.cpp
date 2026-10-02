@@ -17,24 +17,28 @@ button_shape::button_shape(sf::Vector2f pos, Type_pressed type) : pos(pos),type(
 	rect.setPosition(pos);
 }
 
-//button_shape::button_shape(sf::Vector2f pos, Type_pressed type, sf::Vector2f size , float outSize = 5.f ){
-//	activate_diactivate = false; flag = false;
-//
-//	rect.setSize(size);
-//	rect.setOrigin(size * 0.5f);
-//
-//	rect.setOutlineThickness(outSize);
-//
-//	rect.setFillColor({ 0,0,0,0 });
-//	rect.setOutlineColor({ 70,70,70 });
-//
-//	rect.setPosition(pos);
-//}
+button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, Type_pressed type): pos(pos) , type(type){
+	activate_diactivate = false; flag = false;
+
+	rect.setSize(size);
+	rect.setOrigin(size * 0.5f);
+
+	rect.setOutlineThickness(outSize);
+
+	rect.setFillColor({ 0,0,0,0 });
+	rect.setOutlineColor({ 70,70,70 });
+
+	rect.setPosition(pos);
+}
 
 void button_shape::reSize(sf::Vector2f newSize, bool AddToCuttentValue){
-	if (AddToCuttentValue) { rect.setSize(rect.getSize() + newSize); return; }
+	if (AddToCuttentValue) { newSize += rect.getSize(); }
+
 	rect.setSize(newSize);
+	rect.setOrigin(newSize*0.5f);
 }
+
+void button_shape::move(sf::Vector2f vec) { rect.move(vec); pos += vec; }
 
 void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 	sf::Vector2f delta = pos - mouse_pos;
@@ -84,7 +88,7 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 	
 
 
-	if (activate_diactivate) {
+	if (activate_diactivate && type != Type_pressed::HoveredCursor) {
 		rect.setFillColor(sf::Color::White);
 	}
 	else if (isHovered) { rect.setFillColor({255,255,255,30}); }
