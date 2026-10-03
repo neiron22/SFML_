@@ -9,7 +9,7 @@ Shapes_list::Shapes_list(sf::Vector2f pos) :pos(pos), Area({60.f,50.f} , 5.f ,po
 
 void Shapes_list::add_object(){
 	sf::Vector2f position = pos + (distance * float(buttons.size()));
-	buttons.emplace_back(position , Type_pressed::OaneClikc);
+	buttons.emplace_back(position , Type_pressed::OneClick);
 	Area.reSize(distance , true);
 	Area.move(distance*0.5f);
 

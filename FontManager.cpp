@@ -6,6 +6,8 @@
 
 //IDR_RCDATA1
 
+//вроде ничего менять не надо
+
 sf::Font FontManager::font;
 
 void FontManager::init() {

@@ -40,6 +40,12 @@
     <Filter Include="Indicator\Color">
       <UniqueIdentifier>{74f03e80-54a2-45d0-ad92-ecdaaa12f879}</UniqueIdentifier>
     </Filter>
+    <Filter Include="object\button\InputField">
+      <UniqueIdentifier>{8b552b97-5672-442e-a224-c707686ca317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="collision">
+      <UniqueIdentifier>{a31b4b73-e511-4209-9e9e-470550753912}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file.cpp">
@@ -63,14 +69,20 @@
     <ClCompile Include="Counter.cpp">
       <Filter>Indicator\Counter</Filter>
     </ClCompile>
-    <ClCompile Include="slider.cpp">
-      <Filter>Indicator\Color</Filter>
-    </ClCompile>
     <ClCompile Include="button_shape.cpp">
       <Filter>object\button</Filter>
     </ClCompile>
     <ClCompile Include="Shapes_list.cpp">
       <Filter>object\model</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorIndicator.cpp">
+      <Filter>Indicator\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="InputField.cpp">
+      <Filter>object\button\InputField</Filter>
+    </ClCompile>
+    <ClCompile Include="collision.hpp">
+      <Filter>collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -92,14 +104,17 @@
     <ClInclude Include="Counter.hpp">
       <Filter>Indicator\Counter</Filter>
     </ClInclude>
-    <ClInclude Include="slider.hpp">
-      <Filter>Indicator\Color</Filter>
-    </ClInclude>
     <ClInclude Include="button_shape.hpp">
       <Filter>object\button</Filter>
     </ClInclude>
     <ClInclude Include="Shapes_list.hpp">
       <Filter>object\model</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorIndicator.hpp">
+      <Filter>Indicator\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="InputField.hpp">
+      <Filter>object\button\InputField</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

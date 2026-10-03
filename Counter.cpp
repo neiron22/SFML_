@@ -12,7 +12,7 @@ Counter::Counter(sf::Vector2f pos , int characterSize , sf::Color color) {
 
 	text_num.setString("0");
 }
-
+//
 
 
 void Counter::draw(sf::RenderWindow& window) {window.draw(text_num);}

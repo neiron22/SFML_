@@ -1,21 +1,20 @@
 //Constructor.cpp
 #include "Constructor.hpp"
 
+
+
 Constructor::Constructor() :
 
 	shape_Counter({ 10, 10 }),
 	pointer_hsape_Counter({ 10,40 }),
 	poligon_Counter({ 220, 15 }, 22),
 
-	shape_add({340.f , 45.f} , Type_pressed::OaneClikc),
-	shape_delete({ 430.f , 45.f }, Type_pressed::OaneClikc),
+	shape_add({ 340.f , 45.f }, Type_pressed::OneClick),
+	shape_delete({ 430.f , 45.f }, Type_pressed::OneClick),
 
-	color_indicator(sf::Vector2f{ 530.f,10.f }),
-	slider_1({ 500.f,170.f }),
-	silder_counter({ 600.f , 140.f }),
-
-	buttonPoligonAdd({ 260.f , 80.f }, Type_pressed::OaneClikc),
-	buttonPoligonDelet({ 200.f , 80.f }, Type_pressed::OaneClikc)
+	buttonPoligonAdd({ 260.f , 80.f }, Type_pressed::OneClick),
+	buttonPoligonDelet({ 200.f , 80.f }, Type_pressed::OneClick),
+	colorIndicator({750.f, 10.f})
 
 	{
 
@@ -26,9 +25,7 @@ Constructor::Constructor() :
 
 }
 
-void Constructor::update(sf::Vector2f mouse_pos, float dt) {
-
-	int angle = int(360.f * slider_1.getSilverLevel());
+void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 
 	bool LKM = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool PKM = sf::Mouse::isButtonPressed(sf::Mouse::Right);
@@ -40,7 +37,7 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt) {
 	shape_delete.update(mouse_pos, LKM);
 
 
-
+	colorIndicator.update(mouse_pos , LKM);
 	
 
 	buttonPoligonAdd.update(mouse_pos, LKM);
@@ -72,7 +69,6 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt) {
 
 	shape_Counter.updateint(model.get_shape_count());
 	poligon_Counter.updatesize_t(poligon);
-	silder_counter.updateint(angle);
 	
 }
 
@@ -83,6 +79,7 @@ void  Constructor::draw(sf::RenderWindow& window) {
 	shape_add.draw(window);
 	shape_delete.draw(window);
 
+	colorIndicator.draw(window);
 
 	model.draw(window);
 
@@ -91,14 +88,8 @@ void  Constructor::draw(sf::RenderWindow& window) {
 
 	pointer_hsape_Counter.draw(window);
 
-
-	color_indicator.draw(window);
-
 	buttonPoligonAdd.draw(window);
 	buttonPoligonDelet.draw(window);
-
-	slider_1.draw(window);
-	silder_counter.draw(window);
 
 	shapes_list.draw(window);
 }

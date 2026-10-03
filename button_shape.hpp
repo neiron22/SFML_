@@ -2,10 +2,11 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 
-enum class Type_pressed {OaneClikc , On_off , Prpessed , HoveredCursor};
+enum class Type_pressed {OneClick , On_off , Pressed , HoveredCursor};
 
 
 class button_shape{
+protected:
 	Type_pressed type;
 	sf::RectangleShape rect;
 	sf::Vector2f pos;
@@ -24,10 +25,12 @@ public:
 
 	void update(sf::Vector2f mouse_pos, bool LKM);
 
-	void draw(sf::RenderWindow& window);
+	void virtual draw(sf::RenderWindow& window);
 
 	bool getClick() { return activate_diactivate; }
 
 	sf::Vector2f get_pos();
+
+	virtual ~button_shape() = default;
 };
 

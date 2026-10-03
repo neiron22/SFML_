@@ -34,6 +34,8 @@ button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, T
 void button_shape::reSize(sf::Vector2f newSize, bool AddToCuttentValue){
 	if (AddToCuttentValue) { newSize += rect.getSize(); }
 
+	newSize = { std::fabs(newSize.x)  , std::fabs(newSize.y) };
+
 	rect.setSize(newSize);
 	rect.setOrigin(newSize*0.5f);
 }
@@ -56,7 +58,7 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 		else { activate_diactivate = false; }
 
 		break;
-	case Type_pressed::OaneClikc:
+	case Type_pressed::OneClick:
 
 		if (isHovered && LKM && !flag) {
 			activate_diactivate = true;
@@ -75,7 +77,7 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 		if (!LKM) { flag = false; }
 
 		break;
-	case Type_pressed::Prpessed:
+	case Type_pressed::Pressed:
 
 		if (isHovered && LKM && !flag) {
 			activate_diactivate = true;}

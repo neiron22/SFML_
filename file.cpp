@@ -32,7 +32,7 @@ int main() {
 
 	FontManager::init();
 
-	sf::RenderWindow window(sf::VideoMode({900,700}), "consructor" , sf::Style::Titlebar | sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode({1200,900}), "SFML_EDITOR" , sf::Style::Titlebar | sf::Style::Close);
 
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(30);
@@ -47,13 +47,23 @@ int main() {
 
 	sf::Clock clock;
 
-
-
-
+	
 	while (window.isOpen()){sf::Event event;
+
+	float MouseSrtoled = 0;
+
 	while (window.pollEvent(event)){
-	if (event.type == event.Closed) { window.close(); }}
+	if (event.type == event.Closed) { window.close(); }
+
+	if (event.type == sf::Event::MouseWheelScrolled) {
+	if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel) {MouseSrtoled = event.mouseWheelScroll.delta;}
+	
+	}
+	
+	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){ window.close(); }
+
+	
 
 	float delta_time = clock.restart().asSeconds();
 
@@ -74,11 +84,12 @@ int main() {
 	//hasInput = false;}
 	
 
-	constructor.update(mouse_pos, delta_time);
+	constructor.update(mouse_pos, delta_time , MouseSrtoled);
 
 	window.clear();
 
 	constructor.draw(window);
+
 
 	window.display();
 

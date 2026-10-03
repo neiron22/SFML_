@@ -3,7 +3,7 @@
 
 #include<SFML/Graphics.hpp>
 
-
+//*
 class Counter{
 	sf::Text text_num;
 
