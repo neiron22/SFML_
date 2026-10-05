@@ -35,7 +35,7 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode({1200,900}), "SFML_EDITOR" , sf::Style::Titlebar | sf::Style::Close);
 
 	window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(30);
+	window.setFramerateLimit(60);
 
 	//std::setlocale(LC_ALL , "RU");
 
@@ -46,7 +46,6 @@ int main() {
 
 
 	sf::Clock clock;
-
 	
 	while (window.isOpen()){sf::Event event;
 
@@ -56,10 +55,11 @@ int main() {
 	if (event.type == event.Closed) { window.close(); }
 
 	if (event.type == sf::Event::MouseWheelScrolled) {
-	if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel) {MouseSrtoled = event.mouseWheelScroll.delta;}
-	
+		if (event.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel) {MouseSrtoled = event.mouseWheelScroll.delta;}
 	}
 	
+	
+
 	}
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){ window.close(); }
 
@@ -89,7 +89,6 @@ int main() {
 	window.clear();
 
 	constructor.draw(window);
-
 
 	window.display();
 

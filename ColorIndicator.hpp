@@ -12,7 +12,7 @@ class ColorIndicator {
 	sf::Color current_color , final_color;
 	sf::CircleShape point_tone;
 	sf::RectangleShape rect_ton , rect_color , final_color_rect;
-	float segment = 63.75f , point_radius;
+	float segment = 63.75f, point_radius;
 	float length;
 
 	int to_sector;
@@ -29,12 +29,13 @@ public:
 
 	void add_color_tranglines_rect(sf::Vector2f pos, sf::Vector2f size, sf::Color color_1 , sf::Color color_2 , bool add_size = false);
 
-	void add_color__rect(sf::Vector2f pos, sf::Vector2f size, sf::Color color);
-
-
+	void add_color_rect(sf::Vector2f pos, sf::Vector2f size, sf::Color color);
+	
 	void update(sf::Vector2f mousePos , bool LKM);
 
 	void draw(sf::RenderWindow& window);
+
+	sf::Color get_color();
 
 };
 

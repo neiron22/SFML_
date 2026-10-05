@@ -7,6 +7,8 @@
 //#include"Button.hpp"
 #include"button_shape.hpp"
 
+#include"slider.hpp"
+
 #include"ColorIndicator.hpp"
 
 #include"Model.hpp"
@@ -14,15 +16,26 @@
 
 #include"Shapes_list.hpp"
 
+#include"CircularSlider.hpp"
+
 class Constructor{
 	bool mouse_clic_left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 	bool mouse_clic_right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
-	button_shape buttonPoligonAdd , buttonPoligonDelet ,shape_add , shape_delete;
+	button_shape buttonPoligon ,shape_add , shape_delete ,
+		button_color,
+		button_color_1 , button_color_2, button_color_3;
 	size_t poligon;
 	Model model;
+	
+	//---------
+	CircularSlider circularSlider;
 
-	Counter shape_Counter  , pointer_hsape_Counter , poligon_Counter;
+	Slider size_slider , multiplerSilder_x , multiplerSilder_y;
+	//---------
+
+
+	Counter poligon_Counter , angleCounter;
 
 	Shapes_list shapes_list;
 

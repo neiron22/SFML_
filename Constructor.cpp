@@ -4,18 +4,26 @@
 
 
 Constructor::Constructor() :
+	poligon_Counter({ 200.f, 72.5f }, 22),
 
-	shape_Counter({ 10, 10 }),
-	pointer_hsape_Counter({ 10,40 }),
-	poligon_Counter({ 220, 15 }, 22),
+	shape_add({ 140.f , 45.f }, Type_pressed::OneClick),
+	shape_delete({ 140.f , 100.f }, Type_pressed::OneClick),
 
-	shape_add({ 340.f , 45.f }, Type_pressed::OneClick),
-	shape_delete({ 430.f , 45.f }, Type_pressed::OneClick),
+	buttonPoligon({ 40.f,60.f }, 6.f, { 200.f, 72.5f }, Type_pressed::HoveredCursor),
+	colorIndicator({ 750.f, 10.f }),
 
-	buttonPoligonAdd({ 260.f , 80.f }, Type_pressed::OneClick),
-	buttonPoligonDelet({ 200.f , 80.f }, Type_pressed::OneClick),
-	colorIndicator({750.f, 10.f})
+	angleCounter({ 590.f , 40.f }),
+	//---------
+	circularSlider({ 630.f,80.f }, 60.f, 6.f),
+	size_slider({ 300.f, 30.f }, 220.f),
+	multiplerSilder_x({ 300.f, 50.f }, 100.f),
+	multiplerSilder_y({ 300.f, 80.f }, 100.f),
 
+	//---------
+	button_color_1({ 15.f , 15.f }, 2.f, { 750.f, 160.f }, Type_pressed::On_off, true),
+	button_color_2({ 15.f , 15.f }, 2.f, { 750.f , 185.f }, Type_pressed::On_off, true),
+	button_color_3({ 15.f , 15.f }, 2.f, { 750.f , 210.f }, Type_pressed::On_off, true),
+	button_color({ 790.f , 183.f } , Type_pressed::OneClick)
 	{
 
 	sf::Vector2f point_pos{ 340, 45 };
@@ -31,25 +39,12 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 	bool PKM = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
 	//for (auto& it : buttons) {it->update(mouse_pos, LKM, dt);}
+	shapes_list.update(mouse_pos , LKM);
+
 	size_t index = shapes_list.get_index();
 
-	shape_add.update(mouse_pos, LKM);
-	shape_delete.update(mouse_pos, LKM);
-
-
-	colorIndicator.update(mouse_pos , LKM);
-	
-
-	buttonPoligonAdd.update(mouse_pos, LKM);
-	buttonPoligonDelet.update(mouse_pos, LKM);
-
-	if (buttonPoligonAdd.getClick()) { poligon++; }
-	if (buttonPoligonDelet.getClick() && poligon > 3) { poligon--; }
-
-
-	/*if (model.get_zahvat_index() >= 0) {
-		slider_1.update(mouse_pos, LKM, model.get_zahvat_index(), model.get_angle_zahvat_index());
-		color_indicator.update(mouse_pos, LKM, model.get_zahvat_index(), model.get_ColorShape());}*/
+	//---------
+	circularSlider.update(mouse_pos , MouseSkrolled, LKM);
 
 	if (shape_add.getClick()) {
 		model.AddShape({450.f , 350.f} , 30.f , poligon , 0.f);
@@ -60,14 +55,63 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 		shapes_list.delete_object(index);
 	}
 
+	if (shapes_list.switching()) {
+		circularSlider.setRotation(model.get_shape_angle(index));
+	}
+
+	float angle = circularSlider.getRotation();
+
 	
-	shapes_list.update(mouse_pos , LKM);
+
+	angleCounter.updatef(angle);
+	//---------
+	size_slider.update(mouse_pos , LKM);
+
+	multiplerSilder_x.update(mouse_pos, LKM);
+	multiplerSilder_y.update(mouse_pos, LKM);
+
+	shape_add.update(mouse_pos, LKM);
+	shape_delete.update(mouse_pos, LKM);
+
+
+	colorIndicator.update(mouse_pos , LKM);
+
+	sf::Color color = colorIndicator.get_color();
+
+	button_color.update(mouse_pos, LKM);
+
+	button_color_1.update(mouse_pos , LKM);
+	button_color_2.update(mouse_pos, LKM);
+	button_color_3.update(mouse_pos, LKM);
+
+
+	buttonPoligon.update(mouse_pos, LKM);
+
+	if (buttonPoligon.getClick()) { poligon += int(MouseSkrolled); if (poligon < 3) { poligon = 3; } }
+	
+
+
+	/*if (model.get_zahvat_index() >= 0) {
+		slider_1.update(mouse_pos, LKM, model.get_zahvat_index(), model.get_angle_zahvat_index());
+		color_indicator.update(mouse_pos, LKM, model.get_zahvat_index(), model.get_ColorShape());}*/
+	//if (index >= 0) {
+	//	
+	//}
+	
+
+	
+	
+	
+	
+
+	
+
 
 	model.update(mouse_pos, LKM , index);
+	model.setSelectedAngle(index , angle);
+	model.set_shape_color(index , color ,
+	button_color_1.getClick() , button_color_2.getClick(), button_color_3.getClick());
 	
-	
-
-	shape_Counter.updateint(model.get_shape_count());
 	poligon_Counter.updatesize_t(poligon);
 	
 }
@@ -76,20 +120,32 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 void  Constructor::draw(sf::RenderWindow& window) {
 	//for (auto& it : buttons) {it->draw(window);}
 
+	//---------
+	circularSlider.draw(window);
+	angleCounter.draw(window);
+	//---------
+	size_slider.draw(window);
+	multiplerSilder_x.draw(window);
+	multiplerSilder_y.draw(window);
+
+
 	shape_add.draw(window);
 	shape_delete.draw(window);
 
 	colorIndicator.draw(window);
 
+	button_color.draw(window);
+
+	button_color_1.draw(window);
+	button_color_2.draw(window);
+	button_color_3.draw(window);
+
 	model.draw(window);
 
-	shape_Counter.draw(window);
+
 	poligon_Counter.draw(window);
 
-	pointer_hsape_Counter.draw(window);
-
-	buttonPoligonAdd.draw(window);
-	buttonPoligonDelet.draw(window);
+	buttonPoligon.draw(window);
 
 	shapes_list.draw(window);
 }

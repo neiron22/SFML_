@@ -15,9 +15,9 @@ protected:
 
 public:
 
-	button_shape(sf::Vector2f pos, Type_pressed type = Type_pressed::On_off);
+	button_shape(sf::Vector2f pos, Type_pressed type = Type_pressed::On_off, bool default_status = false);
 
-	button_shape( sf::Vector2f size , float outSize,sf::Vector2f pos, Type_pressed type );
+	button_shape( sf::Vector2f size , float outSize,sf::Vector2f pos, Type_pressed type = Type_pressed::On_off , bool default_status = false);
 
 	void reSize(sf::Vector2f newSize , bool AddToCuttentValue = false);
 

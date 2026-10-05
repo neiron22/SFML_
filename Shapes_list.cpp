@@ -44,6 +44,14 @@ int Shapes_list::get_index()
 	return SelecterIndexShape;
 }
 
+bool Shapes_list::switching()
+{
+	for (int i = 0; i < buttons.size(); i++) {
+		if (buttons[i].getClick()) { return true; }
+	}
+	return false;
+}
+
 
 void Shapes_list::draw(sf::RenderWindow& window) {
 	for (auto& i : buttons) { i.draw(window); }

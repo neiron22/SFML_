@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="button_shape.cpp" />
+    <ClCompile Include="CircularSlider.cpp" />
     <ClCompile Include="collision.hpp" />
     <ClCompile Include="ColorIndicator.cpp" />
     <ClCompile Include="InputField.cpp" />
@@ -150,11 +151,13 @@
     <ClCompile Include="file.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="slider.cpp" />
     <ClCompile Include="Type.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
     <ClInclude Include="button_shape.hpp" />
+    <ClInclude Include="CircularSlider.hpp" />
     <ClInclude Include="ColorIndicator.hpp" />
     <ClInclude Include="InputField.hpp" />
     <ClInclude Include="Shapes_list.hpp" />
@@ -163,6 +166,7 @@
     <ClInclude Include="FontManager.hpp" />
     <ClInclude Include="Model.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="slider.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFML_CONSTRUCTOR.rc" />

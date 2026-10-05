@@ -1,5 +1,6 @@
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Button.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Button.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\button_shape.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\button_shape.obj
+C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\CircularSlider.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\CircularSlider.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\collision.hpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\collision.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\ColorIndicator.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\ColorIndicator.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\InputField.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\InputField.obj
@@ -9,4 +10,5 @@ C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Counter.cpp;C:\Us
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\file.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\file.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\FontManager.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\FontManager.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Model.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Model.obj
+C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\slider.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\slider.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Type.hpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Type.obj

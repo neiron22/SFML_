@@ -20,6 +20,7 @@ public:
 
 	int get_index();
 
+	bool switching();
 
 	void draw(sf::RenderWindow & window);
 };

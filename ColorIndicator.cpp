@@ -13,7 +13,7 @@ sf::Color lerpColor(const sf::Color& a, const sf::Color& b, float t) {
 
 ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos) {
 	select_tone = false; select_color = false;
-	to_sector = 0; 
+	to_sector = 0;
 
 	current_color = sf::Color::Red;
 	color_ton_area.setPrimitiveType(sf::Triangles);
@@ -35,7 +35,7 @@ ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos) {
 	size_color_area = { 255.f,255.f };
 	pos_color_aera = posBegin + sf::Vector2f{ segment * 2.f , 40 };
 
-	add_color__rect(pos_color_aera,size_color_area , sf::Color::Red );
+	add_color_rect(pos_color_aera,size_color_area , sf::Color::Red );
 	
 	point_tone.setPosition(posBegin + sf::Vector2f{0 , size.y * 0.5f});
 
@@ -53,9 +53,11 @@ ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos) {
 	point_tone.setOutlineThickness(6.f);
 	point_tone.setOutlineColor({200,200,200 });
 
-
 	final_color_rect.setSize({40.f,40.f});
 	final_color_rect.setPosition(posBegin + sf::Vector2f{0.f, 50.f });
+	final_color_rect.setOutlineThickness(5.f);
+	final_color_rect.setOutlineColor({127,127,127});
+
 
 	point_color_init(pos_color_aera);
 }
@@ -105,7 +107,7 @@ void ColorIndicator::add_color_tranglines_rect(sf::Vector2f pos, sf::Vector2f si
 	if (add_size) { posEnd += sf::Vector2f{ size.x , 0.f }; }
 }
 
-void ColorIndicator::add_color__rect(sf::Vector2f pos, sf::Vector2f size, sf::Color color){
+void ColorIndicator::add_color_rect(sf::Vector2f pos, sf::Vector2f size, sf::Color color){
 	sf::Vector2f pos_1 = pos + sf::Vector2f{ size.x , 0.f };
 	sf::Vector2f pos_2 = pos + sf::Vector2f{ 0.f, size.y };
 	sf::Vector2f pos_3 = pos + size;
@@ -116,14 +118,17 @@ void ColorIndicator::add_color__rect(sf::Vector2f pos, sf::Vector2f size, sf::Co
 	color_area.append({ pos_3 , sf::Color::Black });
 
 	rect_color.setPosition(pos);
-	rect_color.setSize({size});
+	rect_color.setSize(size);
 	rect_color.setOutlineThickness(7.5f);
 	rect_color.setOutlineColor({90,90,90});
+	rect_color.setOutlineColor({90,90,90});
+
 
 }
 
 void ColorIndicator::update(sf::Vector2f mousePos, bool LKM) {
-	if (!LKM) { select_color = false; select_tone = false; return; }
+
+	if (!LKM ) { select_color = false; select_tone = false; return; }
 
 	if (((rect_ton.getGlobalBounds().contains(mousePos) && LKM) || select_tone) && !select_color) {
 		select_tone = true;
@@ -157,9 +162,9 @@ void ColorIndicator::update(sf::Vector2f mousePos, bool LKM) {
 	
 	}
 
-	color_area[color_area.getVertexCount() - 3].color = current_color;
+	color_area[1].color = current_color;
 
-	if (((point_color.getBounds().contains(mousePos) && LKM) || select_color)&& !select_tone) {
+	if (((color_area.getBounds().contains(mousePos) && LKM) || select_color)&& !select_tone) {
 		select_color = true;
 		sf::Vector2f to_mouse;
 
@@ -175,10 +180,10 @@ void ColorIndicator::update(sf::Vector2f mousePos, bool LKM) {
 	}
 
 
-		sf::Vector2f current_pos = pos_point_color - (pos_color_aera);
+		sf::Vector2f current_pos = pos_point_color - pos_color_aera;
 
 		float globalTx = 1.f - (current_pos.x / size_color_area.x);
-		float globalTy = (current_pos.y / size_color_area.x);
+		float globalTy = (current_pos.y / size_color_area.y);
 
 		sf::Color intermediate;
 
@@ -201,4 +206,9 @@ void ColorIndicator::draw(sf::RenderWindow& window) {
 	window.draw(rect_ton);
 	window.draw(point_tone);
 	window.draw(point_color);
+}
+
+sf::Color ColorIndicator::get_color()
+{
+	return final_color;
 }

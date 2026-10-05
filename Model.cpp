@@ -103,16 +103,20 @@ void Model::setSelectedAngle(size_t index, float angle){
 		}
 }
 
-void Model::set_shape_color(size_t index, sf::Color color){
+void Model::set_shape_color(size_t index, sf::Color color , bool color_1 , bool color_2, bool color_3){
 	if (index >= shapes.size()) { return; }
 	size_t start = shapes[index].begin;
 	size_t end = shapes[index].end;
 
-	for (rsize_t it = start; it < end; it++) {
-		Vertarr[it].color = color;
+
+
+	for (rsize_t it = start; it < end; it+=3) {
+		if(color_1)Vertarr[it].color = color;
+		if(color_2)Vertarr[it+1].color = color;
+		if(color_3)Vertarr[it+2].color = color;
 	}
 
-	shapes[index].color = color;
+	shapes[index].color_1 = color;
 }
 
 void Model::size_shape_multipler(size_t index, float factor) {
@@ -154,6 +158,10 @@ void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
 		selecter_shape = true;}
 
 	if (!lkm) { selecter_shape = false; }
+}
+
+float Model::get_shape_angle(size_t index){
+	return shapes[index].angle;
 }
 
 

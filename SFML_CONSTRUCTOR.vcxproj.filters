@@ -46,6 +46,12 @@
     <Filter Include="collision">
       <UniqueIdentifier>{a31b4b73-e511-4209-9e9e-470550753912}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Indicator\Slider">
+      <UniqueIdentifier>{f413be06-5a5a-486d-9718-4e823659092d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Indicator\Circular Slider">
+      <UniqueIdentifier>{f5fb3f6c-21d3-45b5-aac1-0d3967a9c0cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="file.cpp">
@@ -84,6 +90,12 @@
     <ClCompile Include="collision.hpp">
       <Filter>collision</Filter>
     </ClCompile>
+    <ClCompile Include="slider.cpp">
+      <Filter>Indicator\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="CircularSlider.cpp">
+      <Filter>Indicator\Circular Slider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp">
@@ -115,6 +127,12 @@
     </ClInclude>
     <ClInclude Include="InputField.hpp">
       <Filter>object\button\InputField</Filter>
+    </ClInclude>
+    <ClInclude Include="slider.hpp">
+      <Filter>Indicator\Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="CircularSlider.hpp">
+      <Filter>Indicator\Circular Slider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

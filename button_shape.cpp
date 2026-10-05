@@ -1,8 +1,8 @@
 //button_shape.cpp
 #include "button_shape.hpp"
 
-button_shape::button_shape(sf::Vector2f pos, Type_pressed type) : pos(pos),type(type){
-	activate_diactivate = false; flag = false;
+button_shape::button_shape(sf::Vector2f pos, Type_pressed type , bool default_status) : pos(pos),type(type){
+	activate_diactivate = default_status; flag = false;
 
 	float size = 40.f , out_size = 5.f;
 	
@@ -17,8 +17,10 @@ button_shape::button_shape(sf::Vector2f pos, Type_pressed type) : pos(pos),type(
 	rect.setPosition(pos);
 }
 
-button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, Type_pressed type): pos(pos) , type(type){
-	activate_diactivate = false; flag = false;
+button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, Type_pressed type, bool default_status)
+: pos(pos) , type(type)
+{
+	activate_diactivate = default_status; flag = false;
 
 	rect.setSize(size);
 	rect.setOrigin(size * 0.5f);
