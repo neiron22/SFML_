@@ -96,6 +96,12 @@
     <ClCompile Include="CircularSlider.cpp">
       <Filter>Indicator\Circular Slider</Filter>
     </ClCompile>
+    <ClCompile Include="Size_slider.cpp">
+      <Filter>Indicator\Slider</Filter>
+    </ClCompile>
+    <ClCompile Include="color_in_shape.hpp">
+      <Filter>object\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp">
@@ -133,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="CircularSlider.hpp">
       <Filter>Indicator\Circular Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="Size_slider.hpp">
+      <Filter>Indicator\Slider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

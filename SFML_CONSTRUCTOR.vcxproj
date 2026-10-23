@@ -144,6 +144,7 @@
     <ClCompile Include="CircularSlider.cpp" />
     <ClCompile Include="collision.hpp" />
     <ClCompile Include="ColorIndicator.cpp" />
+    <ClCompile Include="color_in_shape.hpp" />
     <ClCompile Include="InputField.cpp" />
     <ClCompile Include="Shapes_list.cpp" />
     <ClCompile Include="Constructor.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="file.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Size_slider.cpp" />
     <ClCompile Include="slider.cpp" />
     <ClCompile Include="Type.hpp" />
   </ItemGroup>
@@ -166,6 +168,7 @@
     <ClInclude Include="FontManager.hpp" />
     <ClInclude Include="Model.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Size_slider.hpp" />
     <ClInclude Include="slider.hpp" />
   </ItemGroup>
   <ItemGroup>

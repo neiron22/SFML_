@@ -8,6 +8,7 @@
 #include"button_shape.hpp"
 
 #include"slider.hpp"
+#include"Size_slider.hpp"
 
 #include"ColorIndicator.hpp"
 
@@ -31,11 +32,13 @@ class Constructor{
 	//---------
 	CircularSlider circularSlider;
 
-	Slider size_slider , multiplerSilder_x , multiplerSilder_y;
+	Slider slider , multiplerSilder_x , multiplerSilder_y;
+
+	Size_slider size_slider;
 	//---------
 
 
-	Counter poligon_Counter , angleCounter;
+	Counter poligon_Counter , angleCounter , color_rgb_counter;
 
 	Shapes_list shapes_list;
 

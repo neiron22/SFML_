@@ -2,6 +2,14 @@
 #include "Model.hpp"
 
 #include"Button.hpp"
+color_in_shape::color_in_shape(float tone, float hsv_V, float hsv_S, sf::Color rgb):
+tone(tone) , hsv_VS(hsv_V , hsv_S) , rgb(rgb){}
+
+color_in_shape::color_in_shape(float tone, sf::Vector2f hsv_VS, sf::Color rgb):
+tone(tone), hsv_VS(hsv_VS), rgb(rgb){}
+
+color_in_shape::color_in_shape():
+tone(0.f), hsv_VS({0.f,0.f}), rgb(sf::Color::White) {}
 
 Model::Model() noexcept
 {
@@ -103,19 +111,21 @@ void Model::setSelectedAngle(size_t index, float angle){
 		}
 }
 
-void Model::set_shape_color(size_t index, sf::Color color , bool color_1 , bool color_2, bool color_3){
+void Model::set_shape_color(size_t index, color_in_shape color,
+	bool color_1, bool color_2, bool color_3){
+
+
 	if (index >= shapes.size()) { return; }
 	size_t start = shapes[index].begin;
 	size_t end = shapes[index].end;
 
-
-
+	sf::Color color_rgb = color.rgb;
 	for (rsize_t it = start; it < end; it+=3) {
-		if(color_1)Vertarr[it].color = color;
-		if(color_2)Vertarr[it+1].color = color;
-		if(color_3)Vertarr[it+2].color = color;
+		if (color_1)Vertarr[it].color = color_rgb;
+		if(color_2)Vertarr[it+1].color = color_rgb;
+		if(color_3)Vertarr[it+2].color = color_rgb;
 	}
-
+	
 	shapes[index].color_1 = color;
 }
 
@@ -154,6 +164,15 @@ void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
 	if (!selecter_shape) { mouse_delta_pos = mouse_pos - (Vertarr[shape.begin].position); }
 
 	if (CursorToShape(mouse_pos , indexSelectShape) && lkm || selecter_shape) {
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+			mouse_pos = sf::Vector2f{
+				float(int(mouse_pos.x) - int(mouse_pos.x)%10)
+				, 
+				float(int(mouse_pos.y) - int(mouse_pos.y) % 10) };
+			mouse_delta_pos = {0.f,0.f};
+		}
+
 		move_1_shape(shape, mouse_pos - (Vertarr[shape.begin].position + mouse_delta_pos));
 		selecter_shape = true;}
 
@@ -162,6 +181,11 @@ void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
 
 float Model::get_shape_angle(size_t index){
 	return shapes[index].angle;
+}
+
+const color_in_shape& Model::get_shape_color(size_t index)
+{
+	return shapes[index].color_1;
 }
 
 

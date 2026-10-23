@@ -13,11 +13,13 @@ Constructor::Constructor() :
 	colorIndicator({ 750.f, 10.f }),
 
 	angleCounter({ 590.f , 40.f }),
+	color_rgb_counter({800.f , 200.f}),
 	//---------
 	circularSlider({ 630.f,80.f }, 60.f, 6.f),
-	size_slider({ 300.f, 30.f }, 220.f),
+	slider({ 300.f, 30.f }, 220.f , {100,100,100} ,{30,30,30} ),
 	multiplerSilder_x({ 300.f, 50.f }, 100.f),
 	multiplerSilder_y({ 300.f, 80.f }, 100.f),
+	size_slider({600.f,600.f} , 200.f , {70,70,70} , { 30,30,30 }),
 
 	//---------
 	button_color_1({ 15.f , 15.f }, 2.f, { 750.f, 160.f }, Type_pressed::On_off, true),
@@ -57,6 +59,7 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 
 	if (shapes_list.switching()) {
 		circularSlider.setRotation(model.get_shape_angle(index));
+		colorIndicator.set_HSVcolor(model.get_shape_color(index));
 	}
 
 	float angle = circularSlider.getRotation();
@@ -64,8 +67,9 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 	
 
 	angleCounter.updatef(angle);
+
 	//---------
-	size_slider.update(mouse_pos , LKM);
+	slider.update(mouse_pos , LKM);
 
 	multiplerSilder_x.update(mouse_pos, LKM);
 	multiplerSilder_y.update(mouse_pos, LKM);
@@ -76,7 +80,9 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 
 	colorIndicator.update(mouse_pos , LKM);
 
-	sf::Color color = colorIndicator.get_color();
+	sf::Color color = colorIndicator.get_RGBcolor();
+	color_rgb_counter.update_string(std::to_string(color.r) + " " + std::to_string(color.g) + " " + std::to_string(color.b));
+
 
 	button_color.update(mouse_pos, LKM);
 
@@ -87,7 +93,7 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 
 	buttonPoligon.update(mouse_pos, LKM);
 
-	if (buttonPoligon.getClick()) { poligon += int(MouseSkrolled); if (poligon < 3) { poligon = 3; } }
+	if (buttonPoligon.getClick()) { poligon += int(MouseSkrolled); poligon = size_t(std::clamp(int(poligon), 3 , 60)); }
 	
 
 
@@ -99,18 +105,10 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 	//}
 	
 
-	
-	
-	
-	
-
-	
-
-
 	model.update(mouse_pos, LKM , index);
 	model.setSelectedAngle(index , angle);
-	model.set_shape_color(index , color ,
-	button_color_1.getClick() , button_color_2.getClick(), button_color_3.getClick());
+	model.set_shape_color(index ,colorIndicator.get_HSVColor(),
+	button_color_1.getClick() ,  button_color_2.getClick(), button_color_3.getClick());
 	
 	poligon_Counter.updatesize_t(poligon);
 	
@@ -118,13 +116,14 @@ void Constructor::update(sf::Vector2f mouse_pos, float dt, float MouseSkrolled){
 
 
 void  Constructor::draw(sf::RenderWindow& window) {
+	size_slider.draw(window);
 	//for (auto& it : buttons) {it->draw(window);}
 
 	//---------
 	circularSlider.draw(window);
 	angleCounter.draw(window);
 	//---------
-	size_slider.draw(window);
+	slider.draw(window);
 	multiplerSilder_x.draw(window);
 	multiplerSilder_y.draw(window);
 
@@ -144,6 +143,8 @@ void  Constructor::draw(sf::RenderWindow& window) {
 
 
 	poligon_Counter.draw(window);
+
+	color_rgb_counter.draw(window),
 
 	buttonPoligon.draw(window);
 

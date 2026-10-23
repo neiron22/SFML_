@@ -31,6 +31,10 @@ Counter::Counter(sf::Vector2f pos , int characterSize , sf::Color color) {
 
 void Counter::draw(sf::RenderWindow& window) {window.draw(text_num);}
 
+void Counter::update_string(std::string text){
+    text_num.setString(text);
+}
+
 void Counter::updatef(float num) {
     char buffer[64];
     // %.2f означает: выводить float с 2 знаками после запятой

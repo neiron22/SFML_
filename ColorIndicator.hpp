@@ -2,25 +2,33 @@
 #pragma once
 #include<SFML/Graphics.hpp>
 
+#include"slider.hpp"
+#include"color_in_shape.hpp"
+
 class ColorIndicator {
-	sf::VertexArray color_ton_area;
-	sf::VertexArray color_area , point_color;
-	sf::Vector2f pos_point_color;
-	
-	sf::Color colors[7];
-	
-	sf::Color current_color , final_color;
+	Slider transparency_slider;
+
 	sf::CircleShape point_tone;
 	sf::RectangleShape rect_ton , rect_color , final_color_rect;
+
+	sf::VertexArray color_ton_area;
+	sf::VertexArray color_area , point_color;
+
+	sf::Vector2f pos_point_color;
+	sf::Vector2f pos_point_tone;
+
+	sf::Vector2f posBegin ,posEnd;
+	sf::Vector2f pos_color_aera , size_color_area;
+
+	sf::Color colors[7];
+	sf::Color current_color , final_color;
+	
 	float segment = 63.75f, point_radius;
 	float length;
 
 	int to_sector;
 
 	bool select_tone , select_color;
-
-	sf::Vector2f posBegin ,posEnd;
-	sf::Vector2f pos_color_aera , size_color_area;
 public:
 
 	ColorIndicator(sf::Vector2f pos);
@@ -33,9 +41,18 @@ public:
 	
 	void update(sf::Vector2f mousePos , bool LKM);
 
+	void update_tone(float new_pos);
+
+	void update_rgb_point(sf::Vector2f new_pos);
+
+	void update_final_color();
+
 	void draw(sf::RenderWindow& window);
 
-	sf::Color get_color();
+	color_in_shape get_HSVColor();
 
+	sf::Color get_RGBcolor();
+
+	void set_HSVcolor(color_in_shape color);
 };
 

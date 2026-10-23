@@ -11,7 +11,8 @@ sf::Color lerpColor(const sf::Color& a, const sf::Color& b, float t) {
 	);
 }
 
-ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos) {
+ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos),
+transparency_slider(pos + sf::Vector2f{90.f , 50.f}, 150.f, {100,100,100}, {50,50,50}, true) {
 	select_tone = false; select_color = false;
 	to_sector = 0;
 
@@ -37,7 +38,8 @@ ColorIndicator::ColorIndicator(sf::Vector2f pos) : posBegin(pos), posEnd(pos) {
 
 	add_color_rect(pos_color_aera,size_color_area , sf::Color::Red );
 	
-	point_tone.setPosition(posBegin + sf::Vector2f{0 , size.y * 0.5f});
+	pos_point_tone = (posBegin + sf::Vector2f{ 0 , size.y * 0.5f });
+	point_tone.setPosition(pos_point_tone);
 
 	rect_ton.setPosition(posBegin);
 	rect_ton.setSize({length , size.y});
@@ -128,72 +130,92 @@ void ColorIndicator::add_color_rect(sf::Vector2f pos, sf::Vector2f size, sf::Col
 
 void ColorIndicator::update(sf::Vector2f mousePos, bool LKM) {
 
+	transparency_slider.update(mousePos ,LKM);
+
 	if (!LKM ) { select_color = false; select_tone = false; return; }
 
-	if (((rect_ton.getGlobalBounds().contains(mousePos) && LKM) || select_tone) && !select_color) {
-		select_tone = true;
-		// Ограничиваем позицию ползунка
-		float clampedX = std::clamp(mousePos.x, posBegin.x, posEnd.x);
-		point_tone.setPosition(clampedX, point_tone.getPosition().y);
-
-		// 2. Расчет цвета
-		float totalLength = posEnd.x - posBegin.x;
-		float currentPos = clampedX - posBegin.x;
-
-		// Процент от 0.0 до 1.0 по всей длине
-		float globalT = currentPos / totalLength;
-
-		// Переводим в номер сегмента (0..5)
-		float scaled = globalT * 6.0f;
-		int segmentIndex = static_cast<int>(scaled);
-
-		// Защита от выхода за границы (если мышь точно на конце)
-		if (segmentIndex >= 6) segmentIndex = 5;
-
-		// Процент внутри текущего сегмента (0.0..1.0)
-		float localT = scaled - segmentIndex;
-
-		// Получаем два соседних цвета
-		sf::Color c1 = colors[segmentIndex];
-		sf::Color c2 = colors[segmentIndex + 1];
-
-		// Смешиваем их
-		current_color = lerpColor(c1, c2, localT);
 	
+
+	if (((rect_ton.getGlobalBounds().contains(mousePos) && LKM) || select_tone) && !select_color)
+	{
+		select_tone = true;
+		
+		update_tone(mousePos.x);
 	}
 
 	color_area[1].color = current_color;
 
-	if (((color_area.getBounds().contains(mousePos) && LKM) || select_color)&& !select_tone) {
+	if (((color_area.getBounds().contains(mousePos) && LKM) || select_color)&& !select_tone)
+	{
 		select_color = true;
-		sf::Vector2f to_mouse;
-
-		to_mouse.x = std::clamp(mousePos.x , pos_color_aera.x , pos_color_aera.x + size_color_area.x) - pos_point_color.x;
-		to_mouse.y = std::clamp(mousePos.y, pos_color_aera.y, pos_color_aera.y + size_color_area.y) - pos_point_color.y;
-
-		pos_point_color += to_mouse;
-
-		for (int i = 0; i < point_color.getVertexCount(); i++) {
-			point_color[i].position += to_mouse;
-		}
-	
+		
+		update_rgb_point(mousePos);
 	}
 
-
-		sf::Vector2f current_pos = pos_point_color - pos_color_aera;
-
-		float globalTx = 1.f - (current_pos.x / size_color_area.x);
-		float globalTy = (current_pos.y / size_color_area.y);
-
-		sf::Color intermediate;
-
-		intermediate = lerpColor(current_color ,sf::Color::White,globalTx );
-		final_color = lerpColor(intermediate, sf::Color::Black, globalTy);
-
-		final_color_rect.setFillColor(final_color);
-
-
+	update_final_color();
 }
+
+void ColorIndicator::update_tone(float new_pos){
+	// Ограничиваем позицию ползунка
+	float clampedX = std::clamp(new_pos, posBegin.x, posEnd.x);
+	pos_point_tone.x = clampedX;
+	point_tone.setPosition(pos_point_tone);
+
+	// 2. Расчет цвета
+	float totalLength = posEnd.x - posBegin.x;
+	float currentPos = clampedX - posBegin.x;
+
+	// Процент от 0.0 до 1.0 по всей длине
+	float globalT = currentPos / totalLength;
+
+	// Переводим в номер сегмента (0..5)
+	float scaled = globalT * 6.0f;
+	int segmentIndex = static_cast<int>(scaled);
+
+	// Защита от выхода за границы (если мышь точно на конце)
+	if (segmentIndex >= 6) segmentIndex = 5;
+
+	// Процент внутри текущего сегмента (0.0..1.0)
+	float localT = scaled - segmentIndex;
+
+	// Получаем два соседних цвета
+	sf::Color c1 = colors[segmentIndex];
+	sf::Color c2 = colors[segmentIndex + 1];
+
+	// Смешиваем их
+	current_color = lerpColor(c1, c2, localT);}
+
+void ColorIndicator::update_rgb_point(sf::Vector2f new_pos){
+	sf::Vector2f to_mouse;
+
+	to_mouse.x = std::clamp(new_pos.x, pos_color_aera.x, pos_color_aera.x + size_color_area.x) - pos_point_color.x;
+	to_mouse.y = std::clamp(new_pos.y, pos_color_aera.y, pos_color_aera.y + size_color_area.y) - pos_point_color.y;
+
+	pos_point_color += to_mouse;
+
+	for (int i = 0; i < point_color.getVertexCount(); i++) {
+		point_color[i].position += to_mouse;
+	}
+}
+
+void ColorIndicator::update_final_color()
+{
+	sf::Vector2f current_pos = pos_point_color - pos_color_aera;
+
+	float globalTx = 1.f - (current_pos.x / size_color_area.x);
+	float globalTy = (current_pos.y / size_color_area.y);
+
+	sf::Color intermediate;
+
+	intermediate = lerpColor(current_color, sf::Color::White, globalTx);
+	final_color = lerpColor(intermediate, sf::Color::Black, globalTy);
+
+	final_color = { final_color.r , final_color.g , final_color.b ,sf::Uint8(255 - transparency_slider.getValue(0,255)) };
+
+	final_color_rect.setFillColor(final_color);
+}
+
+
 
 void ColorIndicator::draw(sf::RenderWindow& window) {
 	window.draw(final_color_rect);
@@ -206,9 +228,26 @@ void ColorIndicator::draw(sf::RenderWindow& window) {
 	window.draw(rect_ton);
 	window.draw(point_tone);
 	window.draw(point_color);
+	
+	transparency_slider.draw(window);
 }
 
-sf::Color ColorIndicator::get_color()
+color_in_shape ColorIndicator::get_HSVColor()
+{
+
+	return color_in_shape( pos_point_tone.x - posBegin.x,pos_point_color  - pos_color_aera , final_color);
+}
+
+sf::Color ColorIndicator::get_RGBcolor()
 {
 	return final_color;
+}
+
+void ColorIndicator::set_HSVcolor(color_in_shape color){
+
+	update_tone(posBegin.x + color.tone);
+
+	update_rgb_point(pos_color_aera + color.hsv_VS);
+
+	update_final_color();
 }

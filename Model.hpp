@@ -6,6 +6,7 @@
 #include<numbers>
 
 #include"Type.hpp"
+#include"color_in_shape.hpp"
 
 class Button;
 
@@ -13,11 +14,11 @@ struct Shape_in_VertexArray{
 	size_t begin, end;
 	sf::Vector2f pos , size_multipler;
 	float radius , angle;
-	sf::Color color_1 , color_2 , color_3;
+	color_in_shape color_1 , color_2 , color_3;
 
 	Shape_in_VertexArray(size_t begin, size_t end  , float radius ,sf::Vector2f pos, float angle = 0) noexcept:
 	begin(begin), radius(radius), end(end), pos(pos), angle(angle),
-	color_1(sf::Color::White), color_2(sf::Color::White),color_3(sf::Color::White),
+	color_1(0,0,0,sf::Color::White), color_2(0,0,0, sf::Color::White),color_3(0,0,0, sf::Color::White),
 
 	size_multipler({1.f , 1.f})
 	
@@ -52,13 +53,15 @@ public:
 
 	void setSelectedAngle(size_t index , float angle);
 
-	void set_shape_color(size_t index, sf::Color color, bool color_1, bool color_2, bool color_3);
+	void set_shape_color(size_t index, color_in_shape color, bool color_1, bool color_2, bool color_3);
 
 	bool CursorToShape(sf::Vector2f point, size_t index);
 
 	void update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape);
 
 	float get_shape_angle(size_t index);
+
+	const color_in_shape & get_shape_color(size_t index);
 
 	int get_shape_count() { return int(shapes.size()); }
 

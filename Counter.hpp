@@ -12,7 +12,7 @@ public:
 
 	void draw(sf::RenderWindow & window);
 
-	
+	void update_string(std::string text);
 	void updatef(float num);
 	void updateint(int num);
 	void updatesize_t(size_t num);

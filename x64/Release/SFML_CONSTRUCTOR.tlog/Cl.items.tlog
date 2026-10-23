@@ -3,6 +3,7 @@ C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\button_shape.cpp;
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\CircularSlider.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\CircularSlider.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\collision.hpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\collision.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\ColorIndicator.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\ColorIndicator.obj
+C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\color_in_shape.hpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\color_in_shape.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\InputField.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\InputField.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Shapes_list.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Shapes_list.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Constructor.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Constructor.obj
@@ -10,5 +11,6 @@ C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Counter.cpp;C:\Us
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\file.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\file.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\FontManager.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\FontManager.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Model.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Model.obj
+C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Size_slider.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Size_slider.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\slider.cpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\slider.obj
 C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\Type.hpp;C:\Users\kirill\source\repos\SFML_CONSTRUCTOR\SFML_CONSTRUCTOR\x64\Release\Type.obj
