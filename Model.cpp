@@ -15,29 +15,34 @@ Model::Model() noexcept
 {
 Vertarr.setPrimitiveType(sf::Triangles); count_vertex = 0;
 mouse_delta_pos = { 0.f,0.f }; selecter_shape = false;
+base_v.reserve(1);
 }
 
 void Model::draw(sf::RenderWindow & window) {
 	window.draw(Vertarr);
 }
 
-void Model::AddShape(sf::Vector2f point, float size_shape, size_t facets, float angle) {
+void Model::AddShape(sf::Vector2f pos, float size_shape, size_t facets, float angle) {
 	//if (size_shape == 0.f) { model.append(sf::Vertex{ point }); return; }
 	angle *= to_radian;
 	for (int i = 0; i < facets; i++) {
 		float angle_1 = angle + (p_2 * i / facets);
 		float angle_2 = angle + (p_2 * (i + 1) / facets); 
 
-		sf::Vector2f pos_1 = point + sf::Vector2f{ sinf(angle_1) , cosf(angle_1) } *size_shape;
-		sf::Vector2f pos_2 = point + sf::Vector2f{ sinf(angle_2) , cosf(angle_2) } *size_shape;
+		sf::Vector2f pos_1 = pos + sf::Vector2f{ sinf(angle_1) , cosf(angle_1) } *size_shape;
+		sf::Vector2f pos_2 = pos + sf::Vector2f{ sinf(angle_2) , cosf(angle_2) } *size_shape;
 
-		Vertarr.append(sf::Vertex{ point });
+		Vertarr.append(sf::Vertex{ pos });
 		Vertarr.append(sf::Vertex{ pos_1 });
 		Vertarr.append(sf::Vertex{ pos_2 });
 
+		base_v.push_back(sf::Vector2f{pos});
+		base_v.push_back(sf::Vector2f{ pos_1});
+		base_v.push_back(sf::Vector2f{ pos_2});
+
 	}
 	facets *= 3;
-	shapes.push_back({ count_vertex , count_vertex + facets ,size_shape,  point , angle });
+	shapes.push_back({ count_vertex , count_vertex + facets ,size_shape,  pos , angle });
 
 	count_vertex += facets;
 }
@@ -49,8 +54,12 @@ void Model::DeleteShape(size_t index){
 	size_t end = shapes[index].end;
 	int delta = int(end - begin);
 
+	int new_size = count_vertex - delta;
+
 	if (end == count_vertex) { // этот случай выполняется ТОЛЬКО если элемет послeдний
-		Vertarr.resize(count_vertex - delta);
+		Vertarr.resize(new_size);
+		base_v.resize(new_size);
+
 		shapes.pop_back();
 		count_vertex -= delta;
 		return;
@@ -58,12 +67,14 @@ void Model::DeleteShape(size_t index){
 
 	for (int i = int(end) , it = int(begin); i < count_vertex; i++ , it ++) {
 		Vertarr[it] = Vertarr[i];
+		base_v[it] = base_v[i];
 	}
-	Vertarr.resize(count_vertex - delta);
+	
+	Vertarr.resize(new_size);
+	base_v.resize(new_size);
 	count_vertex -= delta;
 	
 	shapes.erase(shapes.begin() + index);
-
 	for (size_t i = index; i < shapes.size(); i++) {
 		shapes[i].begin -= delta;
 		shapes[i].end -= delta;
@@ -80,6 +91,7 @@ void Model::Delete_shape() {
 
 
 	Vertarr.resize(count_vertex - delta);
+	base_v.resize(count_vertex - delta);
 	shapes.pop_back();
 	count_vertex -= delta;
 	return;
@@ -89,6 +101,7 @@ void Model::Delete_shape() {
 void Model::move_1_shape(Shape_in_VertexArray& zahvat_shape, sf::Vector2f vec) {
 	for (size_t i = zahvat_shape.begin; i < zahvat_shape.end; i++) {
 		Vertarr[i].position += vec;
+		base_v[i] += vec;
 	}
 	zahvat_shape.pos += vec;
 }
@@ -108,6 +121,8 @@ void Model::setSelectedAngle(size_t index, float angle){
 
 		for (size_t i = shape.begin; i < shape.end; i++) {
 			Vertarr[i].position = transform.transformPoint(Vertarr[i].position);
+			base_v[i] = transform.transformPoint(base_v[i]);
+
 		}
 }
 
@@ -127,21 +142,6 @@ void Model::set_shape_color(size_t index, color_in_shape color,
 	}
 	
 	shapes[index].color_1 = color;
-}
-
-void Model::size_shape_multipler(size_t index, float factor) {
-	if (index >= shapes.size()) { return; }
-
-	auto& shape = shapes[index];
-	sf::Vector2f center = shape.pos;
-
-	for (size_t i = shape.begin; i < shape.end; i++) {
-		sf::Vector2f& vertex_pos = Vertarr[i].position;
-
-		vertex_pos = center + ((vertex_pos - center) * factor);
-	}
-
-	shape.radius *= factor;
 }
 
 bool Model::CursorToShape(sf::Vector2f point, size_t index) {
@@ -179,8 +179,9 @@ void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
 	if (!lkm) { selecter_shape = false; }
 }
 
-float Model::get_shape_angle(size_t index){
-	return shapes[index].angle;
+Shape_in_VertexArray& Model::get_shape(size_t index)
+{
+	return shapes[index];
 }
 
 const color_in_shape& Model::get_shape_color(size_t index)
@@ -188,6 +189,56 @@ const color_in_shape& Model::get_shape_color(size_t index)
 	return shapes[index].color_1;
 }
 
+
+void Model::scaleVerticesGlobal(size_t index, float target_scale_x, float target_scale_y, sf::Vector2f center){
+	if (index >= shapes.size()) return;
+	Shape_in_VertexArray& shape = shapes[index];
+	center += shape.pos;
+
+	float rel_scale_x = target_scale_x / shape.scail_x;
+	float rel_scale_y = target_scale_y / shape.scail_y;
+
+	float rad = shape.angle * to_radian;
+	float cos_a = std::cos(rad);
+	float sin_a = std::sin(rad);
+
+	
+
+	for (size_t i = shape.begin; i < shape.end;i++) {
+		sf::Vector2f& v = Vertarr[i].position;
+
+		float dx = base_v[i].x - center.x;
+		float dy = base_v[i].y - center.y;
+
+		// 2. Поворачиваем на -angle (выравниваем с осями экрана)
+	   // Формула поворота вектора: x' = x*cos + y*sin, y' = -x*sin + y*cos
+		float local_x = dx * cos_a + dy * sin_a;
+		float local_y = -dx * sin_a + dy * cos_a;
+
+		local_x *= target_scale_x;
+		local_y *= target_scale_y;
+
+		// 4. Поворачиваем обратно на +angle
+		float new_dx = local_x * cos_a - local_y * sin_a;
+		float new_dy = local_x * sin_a + local_y * cos_a;
+
+		// 5. Возвращаем в мировые координаты
+		v.x = center.x + new_dx;
+		v.y = center.y + new_dy;
+	}
+	
+	shape.scail_x = target_scale_x;
+	shape.scail_y = target_scale_y;
+
+}
+
+void Model::set_scaleVertexGlobal(size_t index, float global_scale_x, float global_scale_y, sf::Vector2f center)
+{
+	if (index >= shapes.size()) return;
+	Shape_in_VertexArray& shape = shapes[index];
+
+	scaleVerticesGlobal(index, global_scale_x, global_scale_y, center);
+}
 
 void Model::set_point_color(size_t index_point, sf::Color color){
 	Vertarr[index_point].color = color;

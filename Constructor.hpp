@@ -32,7 +32,7 @@ class Constructor{
 	//---------
 	CircularSlider circularSlider;
 
-	Slider slider , multiplerSilder_x , multiplerSilder_y;
+	//Slider slider , multiplerSilder_x , multiplerSilder_y;
 
 	Size_slider size_slider;
 	//---------

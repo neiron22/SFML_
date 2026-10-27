@@ -12,7 +12,7 @@ class CircularSlider{
 public:
 	CircularSlider(sf::Vector2f pos , float Radius , float Out_Radius = 6.5f);
 
-	void update(sf::Vector2f mouse_pos , float mouse_csrolled, bool LKM);
+	void update(sf::Vector2f mouse_pos , float mouse_csrolled, bool LKM , float factor = 0.f);
 
 	float getRotation();
 

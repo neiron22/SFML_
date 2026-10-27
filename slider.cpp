@@ -103,5 +103,17 @@ float Slider::getValue(float min, float max)
 	return min + getProcess() * (max-min);
 }
 
+void Slider::setProcess(float factor){
+	factor = std::clamp(factor , 0.f , 1.f);
+	factor = 1.f - factor;
+
+	if (toVertical) {
+		circle_point.setPosition(circle_point.getPosition().x , pos_begin.y + (factor * len));}
+	else{
+		circle_point.setPosition(pos_begin.x + (factor * len), circle_point.getPosition().y);
+	}
+
+}
+
 
 

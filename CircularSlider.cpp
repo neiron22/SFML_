@@ -81,7 +81,7 @@ CircularSlider::CircularSlider(sf::Vector2f pos, float Radius, float Out_Radius)
 	shape_point.setOrigin({ point_radius ,point_radius+offset });
 }
 
-void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool LKM){
+void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool LKM , float factor){
 	if(vert_arr.getBounds().contains(mouse_pos)){
 
 	if (mouse_csrolled != 0.f) { shape_point.rotate(mouse_csrolled); return; }
@@ -92,7 +92,8 @@ void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool L
 
 	float angle = std::atan2(delta.y , delta.x);
 	angle *= to_radian;
-
+	angle = std::roundf(angle);
+	angle += factor;
 
 	shape_point.setRotation(angle + 90.f);
 

@@ -3,7 +3,9 @@
 #include<SFML/Graphics.hpp>
 #include<memory>
 
-#include"Button.hpp"
+//#include"Button.hpp"
+
+#include"Counter.hpp"
 
 struct two_rect_data {
 	sf::Vector2f pos;
@@ -15,23 +17,39 @@ struct two_rect_data {
 };
 
 class Size_slider{
-	bool select;
-
+	bool select , update_flag, active_flag;
 	int count_segments;
 	float lengh;
 
-	sf::VertexArray vertarr;
-	sf::RectangleShape rect_1, rect_2;
+	const float min_size_shape;
 
-	std::unique_ptr<two_rect_data[]> rects;
+
+	float update_multiplier;
 
 	
 
+	sf::VertexArray vertarr;
+	sf::RectangleShape rect_1, rect_2;
+	sf::Vector2f center;
+
+	std::unique_ptr<two_rect_data[]> rects;
+
+	Counter counter;
+
 public:
-	Size_slider(sf::Vector2f pos , float size , sf::Color color_1, sf::Color color_2);
+
+	float value;
+
+	Size_slider(sf::Vector2f pos , float size , sf::Color color_1);
 
 	void draw(sf::RenderWindow & window);
 
 	void update(sf::Vector2f mouse_pos , float ckroll , bool tap_tab);
+
+	float getValue() { return value; };
+
+	void setValue(float new_value) { value = new_value; };
+
+	bool get_active() { return !active_flag; }
 };
 

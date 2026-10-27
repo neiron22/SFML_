@@ -24,5 +24,7 @@ public:
 	float getProcess();
 
 	float getValue(float min , float max);
+
+	void setProcess(float factor);
 };
 

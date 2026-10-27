@@ -234,7 +234,6 @@ void ColorIndicator::draw(sf::RenderWindow& window) {
 
 color_in_shape ColorIndicator::get_HSVColor()
 {
-
 	return color_in_shape( pos_point_tone.x - posBegin.x,pos_point_color  - pos_color_aera , final_color);
 }
 
@@ -248,6 +247,8 @@ void ColorIndicator::set_HSVcolor(color_in_shape color){
 	update_tone(posBegin.x + color.tone);
 
 	update_rgb_point(pos_color_aera + color.hsv_VS);
+
+	transparency_slider.setProcess(float(color.rgb.a) / 255.f);
 
 	update_final_color();
 }

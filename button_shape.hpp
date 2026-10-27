@@ -29,6 +29,8 @@ public:
 
 	bool getClick() { return activate_diactivate; }
 
+	void setClick();
+
 	sf::Vector2f get_pos();
 
 	virtual ~button_shape() = default;
