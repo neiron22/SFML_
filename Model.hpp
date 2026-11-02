@@ -9,7 +9,7 @@
 #include"Type.hpp"
 #include"color_in_shape.hpp"
 
-class Button;
+//class Button;
 
 struct Shape_in_VertexArray{
 	size_t begin, end;
@@ -43,9 +43,11 @@ class Model{
 	float to_radian = p_2 / 360.f;
 public:
 
-	
-	
 	Model() noexcept;
+
+	sf::VertexArray& get_vertarr() { return Vertarr; };
+
+	rsize_t shapes_size() { return shapes.size(); }
 
 	void draw(sf::RenderWindow& window);
 
@@ -53,7 +55,7 @@ public:
 
 	void DeleteShape(size_t index);
 
-	void Delete_shape();
+	void DeleteShape();
 
 	void move_1_shape(Shape_in_VertexArray& zahvat_shape, sf::Vector2f vec);
 
@@ -62,6 +64,8 @@ public:
 	void set_shape_color(size_t index, color_in_shape color, bool color_1, bool color_2, bool color_3);
 
 	bool CursorToShape(sf::Vector2f point, size_t index);
+
+	bool get_empty() { return shapes.empty(); };
 
 	void update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape);
 

@@ -34,9 +34,6 @@
     <Filter Include="Indicator">
       <UniqueIdentifier>{fc537011-4362-4fa2-84cb-636f4070a03d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Counter">
-      <UniqueIdentifier>{d32df712-5fc4-48cb-8f48-93b2b8ce08f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Indicator\Color">
       <UniqueIdentifier>{74f03e80-54a2-45d0-ad92-ecdaaa12f879}</UniqueIdentifier>
     </Filter>
@@ -49,8 +46,14 @@
     <Filter Include="Indicator\Slider">
       <UniqueIdentifier>{f413be06-5a5a-486d-9718-4e823659092d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Circular Slider">
+    <Filter Include="Indicator\Slider\size">
+      <UniqueIdentifier>{1e577f52-5f2d-4f9e-b2f6-b314f1bb480c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Indicator\Slider\Circular Slider">
       <UniqueIdentifier>{f5fb3f6c-21d3-45b5-aac1-0d3967a9c0cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Indicator\Text">
+      <UniqueIdentifier>{d32df712-5fc4-48cb-8f48-93b2b8ce08f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,8 +75,8 @@
     <ClCompile Include="Constructor.cpp">
       <Filter>Constructor</Filter>
     </ClCompile>
-    <ClCompile Include="Counter.cpp">
-      <Filter>Indicator\Counter</Filter>
+    <ClCompile Include="Text.cpp">
+      <Filter>Indicator\Text</Filter>
     </ClCompile>
     <ClCompile Include="button_shape.cpp">
       <Filter>object\button</Filter>
@@ -94,13 +97,16 @@
       <Filter>Indicator\Slider</Filter>
     </ClCompile>
     <ClCompile Include="CircularSlider.cpp">
-      <Filter>Indicator\Circular Slider</Filter>
-    </ClCompile>
-    <ClCompile Include="Size_slider.cpp">
-      <Filter>Indicator\Slider</Filter>
+      <Filter>Indicator\Slider\Circular Slider</Filter>
     </ClCompile>
     <ClCompile Include="color_in_shape.hpp">
       <Filter>object\model</Filter>
+    </ClCompile>
+    <ClCompile Include="size_controller.cpp">
+      <Filter>Indicator\Slider\size</Filter>
+    </ClCompile>
+    <ClCompile Include="Size_slider.cpp">
+      <Filter>Indicator\Slider\size</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,8 +125,8 @@
     <ClInclude Include="Constructor.hpp">
       <Filter>Constructor</Filter>
     </ClInclude>
-    <ClInclude Include="Counter.hpp">
-      <Filter>Indicator\Counter</Filter>
+    <ClInclude Include="Text.hpp">
+      <Filter>Indicator\Text</Filter>
     </ClInclude>
     <ClInclude Include="button_shape.hpp">
       <Filter>object\button</Filter>
@@ -138,10 +144,13 @@
       <Filter>Indicator\Slider</Filter>
     </ClInclude>
     <ClInclude Include="CircularSlider.hpp">
-      <Filter>Indicator\Circular Slider</Filter>
+      <Filter>Indicator\Slider\Circular Slider</Filter>
+    </ClInclude>
+    <ClInclude Include="size_controller.hpp">
+      <Filter>Indicator\Slider\size</Filter>
     </ClInclude>
     <ClInclude Include="Size_slider.hpp">
-      <Filter>Indicator\Slider</Filter>
+      <Filter>Indicator\Slider\size</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

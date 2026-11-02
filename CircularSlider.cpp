@@ -4,7 +4,7 @@
 #include<numbers>
 
 
-CircularSlider::CircularSlider(sf::Vector2f pos, float Radius, float Out_Radius)
+CircularSlider::CircularSlider(sf::Vector2f pos, float Radius, float Out_Radius, sf::Color color)
 {
 	PointPos = pos;
 	to_radian = float(180.f / std::numbers::pi_v<float>);
@@ -13,8 +13,6 @@ CircularSlider::CircularSlider(sf::Vector2f pos, float Radius, float Out_Radius)
 
 	vert_arr.setPrimitiveType(sf::Triangles);
 	Out_Radius += Radius;
-
-	sf::Color color = { 130,130,130,200 };
 
 	float p_2 = float(std::numbers::pi) * 2.f;
 	int facets = 16;
@@ -81,7 +79,7 @@ CircularSlider::CircularSlider(sf::Vector2f pos, float Radius, float Out_Radius)
 	shape_point.setOrigin({ point_radius ,point_radius+offset });
 }
 
-void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool LKM , float factor){
+void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool LKM , float factor_accuracy , int factor_rounding){
 	if(vert_arr.getBounds().contains(mouse_pos)){
 
 	if (mouse_csrolled != 0.f) { shape_point.rotate(mouse_csrolled); return; }
@@ -93,15 +91,21 @@ void CircularSlider::update(sf::Vector2f mouse_pos, float mouse_csrolled, bool L
 	float angle = std::atan2(delta.y , delta.x);
 	angle *= to_radian;
 	angle = std::roundf(angle);
-	angle += factor;
+	angle += factor_accuracy;
 
 	shape_point.setRotation(angle + 90.f);
 
 	 }
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
+	
+	bool tab = sf::Keyboard::isKeyPressed(sf::Keyboard::Tab);
+	if (tab) {
 		int angleint = int(shape_point.getRotation());
-		shape_point.setRotation(float(angleint - angleint % 10));
+		shape_point.setRotation(float(angleint - angleint % (10)));
+	}
+
+	if (factor_rounding > 10 && !tab) {
+		int angleint = int(shape_point.getRotation());
+		shape_point.setRotation(float(angleint - angleint % (factor_rounding)));
 	}
 
 	}

@@ -48,8 +48,6 @@ void Model::AddShape(sf::Vector2f pos, float size_shape, size_t facets, float an
 }
 
 void Model::DeleteShape(size_t index){
-	if (count_vertex == 0) { return; }
-
 	size_t begin = shapes[index].begin;
 	size_t end = shapes[index].end;
 	int delta = int(end - begin);
@@ -82,7 +80,7 @@ void Model::DeleteShape(size_t index){
 
 	return;
 }
-void Model::Delete_shape() {
+void Model::DeleteShape() {
 	if (count_vertex == 0) { return; }
 
 	size_t begin = shapes.back().begin;
@@ -229,7 +227,8 @@ void Model::scaleVerticesGlobal(size_t index, float target_scale_x, float target
 	
 	shape.scail_x = target_scale_x;
 	shape.scail_y = target_scale_y;
-
+	shape.radius = 5.f * (target_scale_y + target_scale_x);
+	
 }
 
 void Model::set_scaleVertexGlobal(size_t index, float global_scale_x, float global_scale_y, sf::Vector2f center)

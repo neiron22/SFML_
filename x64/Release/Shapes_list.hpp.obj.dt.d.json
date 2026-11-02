@@ -4,6 +4,7 @@
         "Source": "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\shapes_list.hpp",
         "ProvidedModule": "",
         "Includes": [
+            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\button.hpp",
             "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\button_shape.hpp",
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics.hpp",
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\window.hpp",
@@ -215,7 +216,9 @@
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\glsl.inl",
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\sprite.hpp",
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\text.hpp",
-            "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\vertexbuffer.hpp"
+            "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\vertexbuffer.hpp",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\include\\numbers",
+            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\type.hpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

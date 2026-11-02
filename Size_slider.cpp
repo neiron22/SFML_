@@ -88,7 +88,7 @@ void Size_slider::draw(sf::RenderWindow& window){
 	counter.draw(window);
 }
 
-void Size_slider::update(sf::Vector2f mouse_pos, float ckroll, bool tap_tab){
+void Size_slider::update(sf::Vector2f mouse_pos, float ckroll){
 	counter.updatef(value);
 
 	active_flag = !vertarr.getBounds().contains(mouse_pos);

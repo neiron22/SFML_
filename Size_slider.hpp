@@ -3,9 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include<memory>
 
-//#include"Button.hpp"
-
-#include"Counter.hpp"
+#include"Text.hpp"
 
 struct two_rect_data {
 	sf::Vector2f pos;
@@ -34,7 +32,7 @@ class Size_slider{
 
 	std::unique_ptr<two_rect_data[]> rects;
 
-	Counter counter;
+	Text counter;
 
 public:
 
@@ -44,7 +42,7 @@ public:
 
 	void draw(sf::RenderWindow & window);
 
-	void update(sf::Vector2f mouse_pos , float ckroll , bool tap_tab);
+	void update(sf::Vector2f mouse_pos , float ckroll);
 
 	float getValue() { return value; };
 

@@ -6,7 +6,8 @@
 class button : public button_shape {
 	sf::VertexArray icon;
 public:
-	button(sf::Vector2f pos, Type_pressed type , sf::VertexArray icon);
+	button();
+	button(sf::Vector2f pos, Type_pressed type , sf::VertexArray&& icon);
 
 	void draw(sf::RenderWindow& window)override;
 };

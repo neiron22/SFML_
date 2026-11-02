@@ -148,10 +148,11 @@
     <ClCompile Include="InputField.cpp" />
     <ClCompile Include="Shapes_list.cpp" />
     <ClCompile Include="Constructor.cpp" />
-    <ClCompile Include="Counter.cpp" />
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="file.cpp" />
     <ClCompile Include="FontManager.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="size_controller.cpp" />
     <ClCompile Include="Size_slider.cpp" />
     <ClCompile Include="slider.cpp" />
     <ClCompile Include="Type.hpp" />
@@ -164,10 +165,11 @@
     <ClInclude Include="InputField.hpp" />
     <ClInclude Include="Shapes_list.hpp" />
     <ClInclude Include="Constructor.hpp" />
-    <ClInclude Include="Counter.hpp" />
+    <ClInclude Include="Text.hpp" />
     <ClInclude Include="FontManager.hpp" />
     <ClInclude Include="Model.hpp" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="size_controller.hpp" />
     <ClInclude Include="Size_slider.hpp" />
     <ClInclude Include="slider.hpp" />
   </ItemGroup>

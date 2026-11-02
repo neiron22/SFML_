@@ -2,9 +2,11 @@ c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\vc143
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\type.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\slider.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\size_slider.obj
+c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\size_controller.obj
+c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\model.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\fontmanager.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\file.obj
-c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\counter.obj
+c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\text.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\constructor.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\shapes_list.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\inputfield.obj
@@ -14,7 +16,6 @@ c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\colli
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\circularslider.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\button_shape.obj
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\button.obj
-c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\model.obj
 c:\users\kirill\source\repos\sfml_constructor\x64\release\sfml_constructor.exe
 c:\users\kirill\source\repos\sfml_constructor\x64\release\sfml_constructor.pdb
 c:\users\kirill\source\repos\sfml_constructor\sfml_constructor\x64\release\sfml_constructor.res

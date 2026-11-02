@@ -1,5 +1,5 @@
 //Counter.cpp
-#include "Counter.hpp"
+#include "Text.hpp"
 #include"FontManager.hpp"
 
 static std::string trimZeros(std::string str) {
@@ -16,7 +16,7 @@ static std::string trimZeros(std::string str) {
     return str;
 }
 
-Counter::Counter(sf::Vector2f pos , int characterSize , sf::Color color) {
+Text::Text(sf::Vector2f pos , int characterSize , sf::Color color) {
 	text_num.setFont(FontManager::get());
 
 	text_num.setPosition(pos);
@@ -29,13 +29,13 @@ Counter::Counter(sf::Vector2f pos , int characterSize , sf::Color color) {
 //
 
 
-void Counter::draw(sf::RenderWindow& window) {window.draw(text_num);}
+void Text::draw(sf::RenderWindow& window) {window.draw(text_num);}
 
-void Counter::update_string(std::string text){
+void Text::update_string(std::string text){
     text_num.setString(text);
 }
 
-void Counter::updatef(float num) {
+void Text::updatef(float num) {
     char buffer[64];
     // %.2f означает: выводить float с 2 знаками после запятой
     std::snprintf(buffer, sizeof(buffer), "%.2f", num);
@@ -43,9 +43,9 @@ void Counter::updatef(float num) {
     std::string str(buffer);
     text_num.setString(trimZeros(str));
 }
-void  Counter::updateint(int num) {
+void  Text::updateint(int num) {
 	text_num.setString(std::to_string(num));
 }
-void Counter::updatesize_t(size_t num){
+void Text::updatesize_t(size_t num){
 	text_num.setString(std::to_string(num));
 }
