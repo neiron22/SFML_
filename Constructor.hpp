@@ -4,6 +4,10 @@
 #include<vector>
 #include<memory>
 
+#include"Input.hpp"
+#include"Render.hpp"
+#include"BaseButton.hpp"
+
 #include"button_shape.hpp"
 
 #include"slider.hpp"
@@ -18,9 +22,9 @@
 
 #include"CircularSlider.hpp"
 
+#include"Vertexarray.hpp"
+
 class Constructor{
-	bool mouse_clic_left = sf::Mouse::isButtonPressed(sf::Mouse::Left);
-	bool mouse_clic_right = sf::Mouse::isButtonPressed(sf::Mouse::Right);
 
 	button_shape buttonPoligon ,shape_add , shape_delete ,
 		button_color,
@@ -29,18 +33,16 @@ class Constructor{
 
 	size_t poligon;
 	Model model;
-	
 
 	CircularSlider circularSlider;
 
 	//Size_controller size_scontroller;
 
-	//Text poligon_Counter , angleCounter , color_rgb_counter;
+	Text /*poligon_Counter ,*/ angleCounter , color_rgb_counter;
 
 	Shapes_list shapes_list;
 
 	ColorIndicator colorIndicator;
-
 public:
 
 	Constructor();

@@ -1,10 +1,11 @@
 //button_shape.cpp
 #include "button_shape.hpp"
+#include"Render.hpp"
 
-button_shape::button_shape(): pos({0.f ,0.f}) , type(Type_pressed::OneClick) , activate_diactivate(false){}
+button_shape::button_shape(): pos({0.f ,0.f}) , type(TypePressed::OneClick) , state(false){ }
 
-button_shape::button_shape(sf::Vector2f pos, Type_pressed type , bool default_status) : pos(pos),type(type){
-	activate_diactivate = default_status; flag = false;
+button_shape::button_shape(sf::Vector2f pos, TypePressed type , bool default_status) : pos(pos),type(type){
+	state = default_status; flag = false;
 
 	float size = 40.f , out_size = 5.f;
 	
@@ -17,12 +18,13 @@ button_shape::button_shape(sf::Vector2f pos, Type_pressed type , bool default_st
 	rect.setOutlineColor({70,70,70});
 
 	rect.setPosition(pos);
+
 }
 
-button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, Type_pressed type, bool default_status, bool centerOrigin)
+button_shape::button_shape(sf::Vector2f size, float outSize, sf::Vector2f pos, TypePressed type, bool default_status, bool centerOrigin)
 : pos(pos) , type(type)
 {
-	activate_diactivate = default_status; flag = false;
+	state = default_status; flag = false;
 
 	rect.setSize(size);
 	if (centerOrigin) { rect.setOrigin(size * 0.5f); }
@@ -42,6 +44,7 @@ void button_shape::reSize(sf::Vector2f newSize, bool AddToCuttentValue){
 
 	rect.setSize(newSize);
 	rect.setOrigin(newSize*0.5f);
+
 }
 
 void button_shape::move(sf::Vector2f vec) { rect.move(vec); pos += vec; }
@@ -56,36 +59,43 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 
 	switch (type)
 	{
-	case Type_pressed::HoveredCursor:
+	case TypePressed::HoveredCursor:
 
-		if (isHovered) { activate_diactivate = true; }
-		else { activate_diactivate = false; }
+		if (isHovered) { state = true; }
+		else { state = false; }
 
 		break;
-	case Type_pressed::OneClick:
+	case TypePressed::OneClick:
 
 		if (isHovered && LKM && !flag) {
-			activate_diactivate = true;
+			state = true;
 			flag = LKM;
 		}
-		else { activate_diactivate = false; }
+		else { state = false; }
 		if (!LKM) { flag = false; }
 
 		break;
-	case Type_pressed::On_off:
+	case TypePressed::OnOff:
 
 		if (isHovered && LKM && !flag) {
-			activate_diactivate = !activate_diactivate;
+			state = !state;
 			flag = LKM;
 		}
 		if (!LKM) { flag = false; }
 
 		break;
-	case Type_pressed::Pressed:
+	case TypePressed::On:
+
+		if (isHovered && LKM ) {
+			state = true;
+		}
+		
+		break;	
+	case TypePressed::Pressed:
 
 		if (isHovered && LKM && !flag) {
-			activate_diactivate = true;}
-		else{ activate_diactivate = false; }
+			state = true;}
+		else{ state = false; }
 		break;
 	default:
 		break;
@@ -94,8 +104,8 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 	
 
 
-	if (activate_diactivate && type != Type_pressed::HoveredCursor) {
-		rect.setFillColor(sf::Color::White);
+	if (state && type != TypePressed::HoveredCursor) {
+		rect.setFillColor({ 200,200,200,200 });
 	}
 	else if (isHovered) { rect.setFillColor({255,255,255,30}); }
 	else { rect.setFillColor({ 0,0,0,0 }); }
@@ -104,6 +114,10 @@ void button_shape::update(sf::Vector2f mouse_pos, bool LKM) {
 
 void button_shape::draw(sf::RenderWindow& window) {
 	window.draw(rect);
+}
+
+void button_shape::setClick(bool value){
+	state = value;
 }
 
 sf::Vector2f button_shape::get_pos(){return pos;}

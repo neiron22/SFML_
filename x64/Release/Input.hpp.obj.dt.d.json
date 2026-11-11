@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\input.hpp",
+        "ProvidedModule": "",
+        "Includes": [
+            "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\system\\vector2.hpp",
+            "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\system\\vector2.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

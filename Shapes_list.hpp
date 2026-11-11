@@ -1,47 +1,36 @@
 //shapes_list.hpp
 #pragma once
-
-#include"button.hpp"
+#include"ButtonVertarr.hpp"
 #include"vector"
+#include"memory"
 #include<numbers>
-
 #include"Type.hpp"
 
-struct Button_ShapeType {
-	button button;
-	ShapeType type;
-};
-
 class Shapes_list{
-	std::vector<button_shape> buttons;
-	button_shape Area_buttons;
-	button_shape Area_tools;
+	std::vector<std::unique_ptr<BaseButton>> buttons;
+	BaseButton Area_buttons;
+	BaseButton Area_tools;
 
-	button_shape ShapeTypeTool;
-	button_shape ShapeSubTypeTool;
-
-	std::vector<Button_ShapeType> Types;
+	BaseButton ShapeTypeTool;
+	BaseButton ShapeSubTypeTool;
 
 	
+	std::vector<std::unique_ptr<ButtonVertarr>> TypesButtons;
 
-	button deleteShapeButton , AddShapeButton;
+	int IndexOnButton = 0;
 
-	sf::Vector2f pos, distance;
-	int SelecterIndexShape;
+	ButtonVertarr deleteShapeButton, AddShapeButton;
+
+	sf::Vector2f pos, distance_x , distance_y;
+	size_t SelecterIndexShape;
 
 public:
 	Shapes_list(sf::Vector2f pos = {50.f,50.f});
-
-	void add_object();
-
-	void delete_object(size_t index);
-
-	void update(sf::Vector2f mouse_pos , bool LKM);
-
-	int get_index();
-
+	void AddObj();
+	void DelObj(size_t index);
+	void update();
+	int get_index() const;
 	bool switching();
-
 	void draw(sf::RenderWindow & window);
 };
 

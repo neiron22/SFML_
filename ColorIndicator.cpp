@@ -232,9 +232,9 @@ void ColorIndicator::draw(sf::RenderWindow& window) {
 	transparency_slider.draw(window);
 }
 
-color_in_shape ColorIndicator::get_HSVColor()
+ColorShape ColorIndicator::get_HSVColor()
 {
-	return color_in_shape( pos_point_tone.x - posBegin.x,pos_point_color  - pos_color_aera , final_color);
+	return ColorShape( pos_point_tone.x - posBegin.x,pos_point_color  - pos_color_aera , final_color);
 }
 
 sf::Color ColorIndicator::get_RGBcolor()
@@ -242,7 +242,7 @@ sf::Color ColorIndicator::get_RGBcolor()
 	return final_color;
 }
 
-void ColorIndicator::set_HSVcolor(color_in_shape color){
+void ColorIndicator::set_HSVcolor(ColorShape color){
 
 	update_tone(posBegin.x + color.tone);
 

@@ -22,38 +22,89 @@
     <Filter Include="Constructor">
       <UniqueIdentifier>{878cedaa-859a-4137-958c-7e2d2f85ec5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="collision">
+      <UniqueIdentifier>{a31b4b73-e511-4209-9e9e-470550753912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{ca6638bf-cabe-46db-8cdd-713b32bdf302}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator">
+      <UniqueIdentifier>{fc537011-4362-4fa2-84cb-636f4070a03d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator\Color">
+      <UniqueIdentifier>{74f03e80-54a2-45d0-ad92-ecdaaa12f879}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator\Slider">
+      <UniqueIdentifier>{f413be06-5a5a-486d-9718-4e823659092d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator\Slider\size">
+      <UniqueIdentifier>{1e577f52-5f2d-4f9e-b2f6-b314f1bb480c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator\Slider\Circular Slider">
+      <UniqueIdentifier>{f5fb3f6c-21d3-45b5-aac1-0d3967a9c0cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Indicator\Text">
+      <UniqueIdentifier>{d32df712-5fc4-48cb-8f48-93b2b8ce08f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\button">
+      <UniqueIdentifier>{6dadee7c-07a5-4daa-be9f-232f7f6cd036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\button\InputField">
+      <UniqueIdentifier>{8b552b97-5672-442e-a224-c707686ca317}</UniqueIdentifier>
+    </Filter>
     <Filter Include="object">
       <UniqueIdentifier>{346a4cc9-d412-4ed2-a95c-7d1e661376c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="object\model">
       <UniqueIdentifier>{edda42da-e81d-4e64-ae41-2a089d66b5a4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="object\button">
-      <UniqueIdentifier>{6dadee7c-07a5-4daa-be9f-232f7f6cd036}</UniqueIdentifier>
+    <Filter Include="object\model\model">
+      <UniqueIdentifier>{38868052-49bb-462b-bf54-b4f013c99c97}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator">
-      <UniqueIdentifier>{fc537011-4362-4fa2-84cb-636f4070a03d}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\constants">
+      <UniqueIdentifier>{1b429bba-412e-420c-8f83-6537067d932d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Color">
-      <UniqueIdentifier>{74f03e80-54a2-45d0-ad92-ecdaaa12f879}</UniqueIdentifier>
+    <Filter Include="object\model\ShapeList">
+      <UniqueIdentifier>{086e9123-f456-4443-b5e3-5345dd238476}</UniqueIdentifier>
     </Filter>
-    <Filter Include="object\button\InputField">
-      <UniqueIdentifier>{8b552b97-5672-442e-a224-c707686ca317}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Render">
+      <UniqueIdentifier>{ce2f5fca-c91e-47e8-9a0b-7db591d98646}</UniqueIdentifier>
     </Filter>
-    <Filter Include="collision">
-      <UniqueIdentifier>{a31b4b73-e511-4209-9e9e-470550753912}</UniqueIdentifier>
+    <Filter Include="UI\button\Base_button">
+      <UniqueIdentifier>{dafae792-58c7-45ed-8b4d-7bfa81002f1f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Slider">
-      <UniqueIdentifier>{f413be06-5a5a-486d-9718-4e823659092d}</UniqueIdentifier>
+    <Filter Include="UI\ShapeRender">
+      <UniqueIdentifier>{ad8e6df6-b5f0-4414-afff-2492dfab7407}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Slider\size">
-      <UniqueIdentifier>{1e577f52-5f2d-4f9e-b2f6-b314f1bb480c}</UniqueIdentifier>
+    <Filter Include="Исходные файлы\Input">
+      <UniqueIdentifier>{7e0d11a3-5176-4aad-9d8c-305c85c499a3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Slider\Circular Slider">
-      <UniqueIdentifier>{f5fb3f6c-21d3-45b5-aac1-0d3967a9c0cd}</UniqueIdentifier>
+    <Filter Include="UI\button\Base_button\DefaultValue">
+      <UniqueIdentifier>{78f78419-18f3-48e5-8a40-9d939160ea59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Indicator\Text">
-      <UniqueIdentifier>{d32df712-5fc4-48cb-8f48-93b2b8ce08f0}</UniqueIdentifier>
+    <Filter Include="UI\button\ButtonVertarr">
+      <UniqueIdentifier>{d133ff5e-4da7-4488-9bc5-de37e717bfc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\TransForm">
+      <UniqueIdentifier>{97b5b84a-d8e6-4421-b03a-d63fa8568e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Render\RectangleShape">
+      <UniqueIdentifier>{f95113c3-21f2-4da6-81f8-183ffb8004c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Input\UIinput">
+      <UniqueIdentifier>{ec46d8c3-45b4-44d7-bc05-78bb430ec307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Render\VertexArray">
+      <UniqueIdentifier>{81a0fe0f-3930-45c7-8f88-10ec0691fe46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\model\model\Shape">
+      <UniqueIdentifier>{4e67642d-b98e-4956-bcfc-a1902ec86e94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\model\model\Shape\ReadyShape">
+      <UniqueIdentifier>{65f43ffb-ff07-4f76-acdb-e6737cca7f64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\model\model\Shape\ShapesGenerator">
+      <UniqueIdentifier>{d06ce77f-7d7f-4e3c-93d9-2243383ca66f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -61,10 +112,7 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
-      <Filter>object\button</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>object\model</Filter>
+      <Filter>UI\button</Filter>
     </ClCompile>
     <ClCompile Include="Type.hpp">
       <Filter>Type</Filter>
@@ -76,45 +124,90 @@
       <Filter>Constructor</Filter>
     </ClCompile>
     <ClCompile Include="Text.cpp">
-      <Filter>Indicator\Text</Filter>
+      <Filter>UI\Indicator\Text</Filter>
     </ClCompile>
     <ClCompile Include="button_shape.cpp">
-      <Filter>object\button</Filter>
-    </ClCompile>
-    <ClCompile Include="Shapes_list.cpp">
-      <Filter>object\model</Filter>
+      <Filter>UI\button</Filter>
     </ClCompile>
     <ClCompile Include="ColorIndicator.cpp">
-      <Filter>Indicator\Color</Filter>
+      <Filter>UI\Indicator\Color</Filter>
     </ClCompile>
     <ClCompile Include="InputField.cpp">
-      <Filter>object\button\InputField</Filter>
+      <Filter>UI\button\InputField</Filter>
     </ClCompile>
     <ClCompile Include="collision.hpp">
       <Filter>collision</Filter>
     </ClCompile>
     <ClCompile Include="slider.cpp">
-      <Filter>Indicator\Slider</Filter>
+      <Filter>UI\Indicator\Slider</Filter>
     </ClCompile>
     <ClCompile Include="CircularSlider.cpp">
-      <Filter>Indicator\Slider\Circular Slider</Filter>
+      <Filter>UI\Indicator\Slider\Circular Slider</Filter>
     </ClCompile>
-    <ClCompile Include="color_in_shape.hpp">
+    <ClCompile Include="SpecialDataTypes.hpp">
       <Filter>object\model</Filter>
     </ClCompile>
     <ClCompile Include="size_controller.cpp">
-      <Filter>Indicator\Slider\size</Filter>
+      <Filter>UI\Indicator\Slider\size</Filter>
     </ClCompile>
     <ClCompile Include="Size_slider.cpp">
-      <Filter>Indicator\Slider\size</Filter>
+      <Filter>UI\Indicator\Slider\size</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>object\model\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes_list.cpp">
+      <Filter>object\model\ShapeList</Filter>
+    </ClCompile>
+    <ClCompile Include="constants.hpp">
+      <Filter>Исходные файлы\constants</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapesGenerator.cpp">
+      <Filter>object\model\model\Shape\ShapesGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadyShape.cpp">
+      <Filter>object\model\model\Shape\ReadyShape</Filter>
+    </ClCompile>
+    <ClCompile Include="ReadyShape.hpp">
+      <Filter>object\model\model\Shape\ReadyShape</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Исходные файлы\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseButton.hpp">
+      <Filter>UI\button\Base_button</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseButton.cpp">
+      <Filter>UI\button\Base_button</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Исходные файлы\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonDefaultValue.hpp">
+      <Filter>UI\button\Base_button\DefaultValue</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonVertarr.cpp">
+      <Filter>UI\button\ButtonVertarr</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleShape.cpp">
+      <Filter>Исходные файлы\Render\RectangleShape</Filter>
+    </ClCompile>
+    <ClCompile Include="RectangleShape.hpp">
+      <Filter>Исходные файлы\Render\RectangleShape</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexArray.cpp">
+      <Filter>Исходные файлы\Render\VertexArray</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformShape.cpp">
+      <Filter>object\TransForm</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformShape.hpp">
+      <Filter>object\TransForm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp">
-      <Filter>object\button</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.hpp">
-      <Filter>object\model</Filter>
+      <Filter>UI\button</Filter>
     </ClInclude>
     <ClInclude Include="FontManager.hpp">
       <Filter>FontManager</Filter>
@@ -126,31 +219,49 @@
       <Filter>Constructor</Filter>
     </ClInclude>
     <ClInclude Include="Text.hpp">
-      <Filter>Indicator\Text</Filter>
+      <Filter>UI\Indicator\Text</Filter>
     </ClInclude>
     <ClInclude Include="button_shape.hpp">
-      <Filter>object\button</Filter>
-    </ClInclude>
-    <ClInclude Include="Shapes_list.hpp">
-      <Filter>object\model</Filter>
+      <Filter>UI\button</Filter>
     </ClInclude>
     <ClInclude Include="ColorIndicator.hpp">
-      <Filter>Indicator\Color</Filter>
+      <Filter>UI\Indicator\Color</Filter>
     </ClInclude>
     <ClInclude Include="InputField.hpp">
-      <Filter>object\button\InputField</Filter>
+      <Filter>UI\button\InputField</Filter>
     </ClInclude>
     <ClInclude Include="slider.hpp">
-      <Filter>Indicator\Slider</Filter>
+      <Filter>UI\Indicator\Slider</Filter>
     </ClInclude>
     <ClInclude Include="CircularSlider.hpp">
-      <Filter>Indicator\Slider\Circular Slider</Filter>
+      <Filter>UI\Indicator\Slider\Circular Slider</Filter>
     </ClInclude>
     <ClInclude Include="size_controller.hpp">
-      <Filter>Indicator\Slider\size</Filter>
+      <Filter>UI\Indicator\Slider\size</Filter>
     </ClInclude>
     <ClInclude Include="Size_slider.hpp">
-      <Filter>Indicator\Slider\size</Filter>
+      <Filter>UI\Indicator\Slider\size</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.hpp">
+      <Filter>object\model\model</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes_list.hpp">
+      <Filter>object\model\ShapeList</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapesGenerator.hpp">
+      <Filter>object\model\model\Shape\ShapesGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.hpp">
+      <Filter>Исходные файлы\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.hpp">
+      <Filter>Исходные файлы\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="ButtonVertarr.hpp">
+      <Filter>UI\button\ButtonVertarr</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexArray.hpp">
+      <Filter>Исходные файлы\Render\VertexArray</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

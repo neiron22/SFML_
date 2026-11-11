@@ -1,24 +1,22 @@
 //button_shape.hpp
 #pragma once
 #include<SFML/Graphics.hpp>
-
-enum class Type_pressed {OneClick , On_off , Pressed , HoveredCursor};
-
+#include"Type.hpp"
 
 class button_shape{
 protected:
-	Type_pressed type;
+	TypePressed type;
 	sf::RectangleShape rect;
 	sf::Vector2f pos;
-	bool activate_diactivate, flag;
+	bool state, flag;
 
 
 public:
 	button_shape();
 
-	button_shape(sf::Vector2f pos, Type_pressed type = Type_pressed::On_off, bool default_status = false);
+	button_shape(sf::Vector2f pos, TypePressed type = TypePressed::OnOff, bool default_status = false);
 
-	button_shape( sf::Vector2f size , float outSize,sf::Vector2f pos, Type_pressed type = Type_pressed::On_off, bool default_status = false , bool centerOrigin = true);
+	button_shape( sf::Vector2f size , float outSize,sf::Vector2f pos, TypePressed type = TypePressed::OnOff, bool default_status = false , bool centerOrigin = true);
 
 	void reSize(sf::Vector2f newSize , bool AddToCuttentValue = false);
 
@@ -28,9 +26,11 @@ public:
 
 	void virtual draw(sf::RenderWindow& window);
 
-	bool getClick() { return activate_diactivate; }
+	bool getClick() const { return state; }
 
-	void setClick();
+	operator bool() {return state;}
+
+	void setClick(bool value);
 
 	sf::Vector2f get_pos();
 

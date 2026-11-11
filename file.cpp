@@ -4,13 +4,9 @@
 #include <iostream>
 //#include<thread>
 //#include<string>
-
-
 //#include<fstream>
 
 #include"Constructor.hpp"
-
-
 #include"FontManager.hpp"
 
 //std::string CONSOLE_INPUT;

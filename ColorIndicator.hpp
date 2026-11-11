@@ -3,7 +3,7 @@
 #include<SFML/Graphics.hpp>
 
 #include"slider.hpp"
-#include"color_in_shape.hpp"
+#include"SpecialDataTypes.hpp"
 
 class ColorIndicator {
 	Slider transparency_slider;
@@ -49,10 +49,10 @@ public:
 
 	void draw(sf::RenderWindow& window);
 
-	color_in_shape get_HSVColor();
+	ColorShape get_HSVColor();
 
 	sf::Color get_RGBcolor();
 
-	void set_HSVcolor(color_in_shape color);
+	void set_HSVcolor(ColorShape color);
 };
 

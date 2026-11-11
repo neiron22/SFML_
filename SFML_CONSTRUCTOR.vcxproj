@@ -139,13 +139,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseButton.cpp" />
+    <ClCompile Include="BaseButton.hpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonDefaultValue.hpp" />
+    <ClCompile Include="ButtonVertarr.cpp" />
     <ClCompile Include="button_shape.cpp" />
     <ClCompile Include="CircularSlider.cpp" />
     <ClCompile Include="collision.hpp" />
     <ClCompile Include="ColorIndicator.cpp" />
-    <ClCompile Include="color_in_shape.hpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="ReadyShape.cpp" />
+    <ClCompile Include="RectangleShape.cpp" />
+    <ClCompile Include="RectangleShape.hpp" />
+    <ClCompile Include="Render.cpp" />
+    <ClCompile Include="SpecialDataTypes.hpp" />
+    <ClCompile Include="constants.hpp" />
     <ClCompile Include="InputField.cpp" />
+    <ClCompile Include="ReadyShape.hpp" />
+    <ClCompile Include="ShapesGenerator.cpp" />
     <ClCompile Include="Shapes_list.cpp" />
     <ClCompile Include="Constructor.cpp" />
     <ClCompile Include="Text.cpp" />
@@ -155,14 +167,21 @@
     <ClCompile Include="size_controller.cpp" />
     <ClCompile Include="Size_slider.cpp" />
     <ClCompile Include="slider.cpp" />
+    <ClCompile Include="TransformShape.cpp" />
+    <ClCompile Include="TransformShape.hpp" />
     <ClCompile Include="Type.hpp" />
+    <ClCompile Include="VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.hpp" />
+    <ClInclude Include="ButtonVertarr.hpp" />
     <ClInclude Include="button_shape.hpp" />
     <ClInclude Include="CircularSlider.hpp" />
     <ClInclude Include="ColorIndicator.hpp" />
+    <ClInclude Include="Input.hpp" />
     <ClInclude Include="InputField.hpp" />
+    <ClInclude Include="Render.hpp" />
+    <ClInclude Include="ShapesGenerator.hpp" />
     <ClInclude Include="Shapes_list.hpp" />
     <ClInclude Include="Constructor.hpp" />
     <ClInclude Include="Text.hpp" />
@@ -172,6 +191,7 @@
     <ClInclude Include="size_controller.hpp" />
     <ClInclude Include="Size_slider.hpp" />
     <ClInclude Include="slider.hpp" />
+    <ClInclude Include="VertexArray.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="SFML_CONSTRUCTOR.rc" />

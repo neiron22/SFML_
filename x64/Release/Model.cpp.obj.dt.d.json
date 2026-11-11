@@ -217,10 +217,12 @@
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\text.hpp",
             "c:\\biblioteki\\sfml-2.6.2\\include\\sfml\\graphics\\vertexbuffer.hpp",
             "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\include\\numbers",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\include\\cstdarg",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\include\\stdarg.h",
             "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\type.hpp",
-            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\color_in_shape.hpp",
-            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\button.hpp",
-            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\button_shape.hpp"
+            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\specialdatatypes.hpp",
+            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\transformshape.hpp",
+            "c:\\users\\kirill\\source\\repos\\sfml_constructor\\sfml_constructor\\constants.hpp"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

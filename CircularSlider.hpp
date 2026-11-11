@@ -1,18 +1,22 @@
 //CircularSlider.hpp
 #pragma once
 
-#include<SFML/Graphics.hpp>
+//#include<SFML/Graphics.hpp>
+#include<SFML/Window/Keyboard.hpp>
+#include"SpecialDataTypes.hpp"
+#include"VertexArray.hpp"
 
 class CircularSlider{
-	sf::VertexArray vert_arr;
-	sf::CircleShape shape_point;
+	VertexArray vert_arr;
+	std::vector<Range> rects;
+	VertexArray Point;
 	sf::Vector2f PointPos;
-
-	float to_radian , offset;
+	sf::Color color;
+	float Angle;
 public:
-	CircularSlider(sf::Vector2f pos , float Radius , float Out_Radius = 6.5f , sf::Color color = { 130,130,130,200 });
+	CircularSlider(sf::Vector2f pos , float Radius , float Out_Radius = 8.f , sf::Color color = { 130,130,130,200 }	, sf::Color color_2 = { 40,40,40,255 });
 
-	void update(sf::Vector2f mouse_pos , float mouse_csrolled, bool LKM , float factor = 0.f , int factor_rounding = 0);
+	void update();
 
 	float getRotation();
 

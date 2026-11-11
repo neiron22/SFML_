@@ -1,246 +1,183 @@
 //Model.cpp
 #include "Model.hpp"
 
-#include"Button.hpp"
-color_in_shape::color_in_shape(float tone, float hsv_V, float hsv_S, sf::Color rgb):
+#include"TransformShape.hpp"
+
+//#include"Button.hpp"
+
+
+ShapeInfo::ShapeInfo(Range range, float radius, sf::Vector2f pos, float angle = 0)noexcept :
+	range(range), radius(radius), pos(pos), angle(angle),
+
+	color_1(0, 0, 0, sf::Color::White), color_2(0, 0, 0, sf::Color::White), color_3(0, 0, 0, sf::Color::White),
+
+	scale({ 1.f , 1.f })
+
+{}
+
+ColorShape::ColorShape(float tone, float hsv_V, float hsv_S, sf::Color rgb):
 tone(tone) , hsv_VS(hsv_V , hsv_S) , rgb(rgb){}
 
-color_in_shape::color_in_shape(float tone, sf::Vector2f hsv_VS, sf::Color rgb):
+ColorShape::ColorShape(float tone, sf::Vector2f hsv_VS, sf::Color rgb):
 tone(tone), hsv_VS(hsv_VS), rgb(rgb){}
 
-color_in_shape::color_in_shape():
+ColorShape::ColorShape():
 tone(0.f), hsv_VS({0.f,0.f}), rgb(sf::Color::White) {}
 
-Model::Model() noexcept
-{
-Vertarr.setPrimitiveType(sf::Triangles); count_vertex = 0;
-mouse_delta_pos = { 0.f,0.f }; selecter_shape = false;
-base_v.reserve(1);
-}
-
-void Model::draw(sf::RenderWindow & window) {
-	window.draw(Vertarr);
-}
-
-void Model::AddShape(sf::Vector2f pos, float size_shape, size_t facets, float angle) {
-	//if (size_shape == 0.f) { model.append(sf::Vertex{ point }); return; }
+void ModelEditor::AddShape(sf::Vector2f pos, float radius, size_t facets, float angle) {
 	angle *= to_radian;
-	for (int i = 0; i < facets; i++) {
-		float angle_1 = angle + (p_2 * i / facets);
-		float angle_2 = angle + (p_2 * (i + 1) / facets); 
 
-		sf::Vector2f pos_1 = pos + sf::Vector2f{ sinf(angle_1) , cosf(angle_1) } *size_shape;
-		sf::Vector2f pos_2 = pos + sf::Vector2f{ sinf(angle_2) , cosf(angle_2) } *size_shape;
+	size_t startVertex = data.vertices.size();
 
-		Vertarr.append(sf::Vertex{ pos });
-		Vertarr.append(sf::Vertex{ pos_1 });
-		Vertarr.append(sf::Vertex{ pos_2 });
+	// Центральный треугольник для каждой грани
+	for (size_t i = 0; i < facets; i++) {
+		float a1 = angle + (std::numbers::pi * 2 * i / facets);
+		float a2 = angle + (std::numbers::pi * 2 * (i + 1) / facets);
 
-		base_v.push_back(sf::Vector2f{pos});
-		base_v.push_back(sf::Vector2f{ pos_1});
-		base_v.push_back(sf::Vector2f{ pos_2});
+		sf::Vector2f p1 = pos + sf::Vector2f{ std::sin(a1), std::cos(a1) } * radius;
+		sf::Vector2f p2 = pos + sf::Vector2f{ std::sin(a2), std::cos(a2) } * radius;
 
+		data.vertices.push_back(pos);
+		data.vertices.push_back(p1);
+		data.vertices.push_back(p2);
 	}
-	facets *= 3;
-	shapes.push_back({ count_vertex , count_vertex + facets ,size_shape,  pos , angle });
 
-	count_vertex += facets;
+	data.shapes.emplace_back(ShapeInfo
+		{
+		{startVertex,startVertex + facets * 3},
+		radius,pos,angle
+		});
+
 }
 
-void Model::DeleteShape(size_t index){
-	size_t begin = shapes[index].begin;
-	size_t end = shapes[index].end;
-	int delta = int(end - begin);
+void ModelEditor::DeleteShape(size_t index){
+	if(changed.check(index , size())) return;
 
-	int new_size = count_vertex - delta;
+	auto& ShapeToDel = data.shapes[index];
 
-	if (end == count_vertex) { // этот случай выполняется ТОЛЬКО если элемет послeдний
-		Vertarr.resize(new_size);
-		base_v.resize(new_size);
+	Range range = ShapeToDel.range;
+	size_t delta = range.end - range.begin;
 
-		shapes.pop_back();
-		count_vertex -= delta;
-		return;
+	data.shapes.erase(data.shapes.begin() + index);
+
+	for (size_t i = index; i < data.shapes.size(); ++i) {
+		data.shapes[i].range -= delta;
 	}
 
-	for (int i = int(end) , it = int(begin); i < count_vertex; i++ , it ++) {
-		Vertarr[it] = Vertarr[i];
-		base_v[it] = base_v[i];
-	}
-	
-	Vertarr.resize(new_size);
-	base_v.resize(new_size);
-	count_vertex -= delta;
-	
-	shapes.erase(shapes.begin() + index);
-	for (size_t i = index; i < shapes.size(); i++) {
-		shapes[i].begin -= delta;
-		shapes[i].end -= delta;
-	}
-
-	return;
-}
-void Model::DeleteShape() {
-	if (count_vertex == 0) { return; }
-
-	size_t begin = shapes.back().begin;
-	size_t end = shapes.back().end;
-	int delta = int(end - begin);
-
-
-	Vertarr.resize(count_vertex - delta);
-	base_v.resize(count_vertex - delta);
-	shapes.pop_back();
-	count_vertex -= delta;
-	return;
-	}
-
-
-void Model::move_1_shape(Shape_in_VertexArray& zahvat_shape, sf::Vector2f vec) {
-	for (size_t i = zahvat_shape.begin; i < zahvat_shape.end; i++) {
-		Vertarr[i].position += vec;
-		base_v[i] += vec;
-	}
-	zahvat_shape.pos += vec;
+	data.vertices.erase(data.vertices.begin() + range.begin , data.vertices.begin() + range.end);
 }
 
-void Model::setSelectedAngle(size_t index, float angle){
-	if (index >= shapes.size()) return;
-
-		auto& shape = shapes[index];
-		sf::Vector2f center = shape.pos;
-
-		sf::Transform transform;
-		transform.translate(center);
-		transform.rotate(angle - shape.angle);
-		transform.translate(-center);
-
-		shape.angle = angle;
-
-		for (size_t i = shape.begin; i < shape.end; i++) {
-			Vertarr[i].position = transform.transformPoint(Vertarr[i].position);
-			base_v[i] = transform.transformPoint(base_v[i]);
-
-		}
-}
-
-void Model::set_shape_color(size_t index, color_in_shape color,
-	bool color_1, bool color_2, bool color_3){
-
-
-	if (index >= shapes.size()) { return; }
-	size_t start = shapes[index].begin;
-	size_t end = shapes[index].end;
-
-	sf::Color color_rgb = color.rgb;
-	for (rsize_t it = start; it < end; it+=3) {
-		if (color_1)Vertarr[it].color = color_rgb;
-		if(color_2)Vertarr[it+1].color = color_rgb;
-		if(color_3)Vertarr[it+2].color = color_rgb;
-	}
-	
-	shapes[index].color_1 = color;
-}
-
-bool Model::CursorToShape(sf::Vector2f point, size_t index) {
-
-	sf::Vector2f center = Vertarr[shapes[index].begin].position;
-	float radius = shapes[index].radius;
-
-	sf::Vector2f dlt_vec = point - center;
-	float delta = (dlt_vec.x * dlt_vec.x) + (dlt_vec.y * dlt_vec.y);
-	if (delta < radius * radius) { return true; }
-	return false;
-}
-
-void Model::update(sf::Vector2f mouse_pos, bool lkm, size_t indexSelectShape)
+void ModelEditor::MoveShape(size_t index, sf::Vector2f delta)
 {
-	if (indexSelectShape >= shapes.size()) { return; }
+	if (index >= size()) { return; }
+	Range range = data.shapes[index].range;
 
-	Shape_in_VertexArray& shape = shapes[indexSelectShape];
+	for (size_t i = range.begin; i < range.end; i++) {
+		data.vertices[i].position += delta;
+	}
+
+}
+
+void ModelEditor::RotateShape(size_t index, float angle){
+	/*if (changed.check(index, size())) return;
+
+	ShapeInfo& shape = data.shapes[index];
+	Range range = shape.range;
+
+	float rad = angle * to_radian;
+	float cos_a = std::cos(rad);
+	float sin_a = std::sin(rad);	
 	
-	if (!selecter_shape) { mouse_delta_pos = mouse_pos - (Vertarr[shape.begin].position); }
+	sf::Vector2f center = shape.pos;
 
-	if (CursorToShape(mouse_pos , indexSelectShape) && lkm || selecter_shape) {
+	trsh::RotationVV(angle , data.vertices , shape.pos , shape.range);
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) {
-			mouse_pos = sf::Vector2f{
-				float(int(mouse_pos.x) - int(mouse_pos.x)%10)
-				, 
-				float(int(mouse_pos.y) - int(mouse_pos.y) % 10) };
-			mouse_delta_pos = {0.f,0.f};
-		}
-
-		move_1_shape(shape, mouse_pos - (Vertarr[shape.begin].position + mouse_delta_pos));
-		selecter_shape = true;}
-
-	if (!lkm) { selecter_shape = false; }
+	shape.angle += angle;*/
 }
 
-Shape_in_VertexArray& Model::get_shape(size_t index)
+void ModelEditor::SetRotationShape(size_t index, float angle)
 {
-	return shapes[index];
+	if (changed.check(index, size())) return;
+
+	float current_angle = data.shapes[index].angle;
+	
+	RotateShape(index , angle - current_angle);
 }
 
-const color_in_shape& Model::get_shape_color(size_t index)
+void ModelEditor::SetColorShape(size_t index, ColorShape color)
 {
-	return shapes[index].color_1;
+	if (changed.check(index, size())) return;
+
+	data.shapes[index].color_1 = color;
+	data.shapes[index].color_2 = color;
+	data.shapes[index].color_3 = color;
 }
 
+void ModelEditor::ScaleShape(size_t index, sf::Vector2f NewScale){
+	if (changed.check(index, size())) return;
 
-void Model::scaleVerticesGlobal(size_t index, float target_scale_x, float target_scale_y, sf::Vector2f center){
-	if (index >= shapes.size()) return;
-	Shape_in_VertexArray& shape = shapes[index];
-	center += shape.pos;
-
-	float rel_scale_x = target_scale_x / shape.scail_x;
-	float rel_scale_y = target_scale_y / shape.scail_y;
-
-	float rad = shape.angle * to_radian;
+	auto& shape = data.shapes[index];
+	
+	sf::Vector2f center = shape.pos;
+	float rad = -shape.angle * to_radian; // Минус, чтобы выровнять фигуру
 	float cos_a = std::cos(rad);
 	float sin_a = std::sin(rad);
 
-	
+	// Относительный масштаб (насколько нужно изменить текущий)
+	float relScaleX = NewScale.x / shape.scale.x;
+	float relScaleY = NewScale.y / shape.scale.y;
 
-	for (size_t i = shape.begin; i < shape.end;i++) {
-		sf::Vector2f& v = Vertarr[i].position;
+	for (size_t i = shape.range.begin; i < shape.range.end; i++) {
+		auto& v = data.vertices[i].position;
 
-		float dx = base_v[i].x - center.x;
-		float dy = base_v[i].y - center.y;
+		// 1. Сдвиг к центру
+		float dx = v.x - center.x;
+		float dy = v.y - center.y;
 
-		// 2. Поворачиваем на -angle (выравниваем с осями экрана)
-	   // Формула поворота вектора: x' = x*cos + y*sin, y' = -x*sin + y*cos
-		float local_x = dx * cos_a + dy * sin_a;
-		float local_y = -dx * sin_a + dy * cos_a;
+		// 2. Поворот на -angle (выравнивание)
+		float localX = dx * cos_a - dy * sin_a;
+		float localY = dx * sin_a + dy * cos_a;
 
-		local_x *= target_scale_x;
-		local_y *= target_scale_y;
+		// 3. Масштабирование
+		localX *= relScaleX;
+		localY *= relScaleY;
 
-		// 4. Поворачиваем обратно на +angle
-		float new_dx = local_x * cos_a - local_y * sin_a;
-		float new_dy = local_x * sin_a + local_y * cos_a;
+		// 4. Обратный поворот
+		float finalX = localX * std::cos(-rad) - localY * std::sin(-rad);
+		float finalY = localX * std::sin(-rad) + localY * std::cos(-rad);
 
-		// 5. Возвращаем в мировые координаты
-		v.x = center.x + new_dx;
-		v.y = center.y + new_dy;
+		// 5. Возврат на место
+		v.x = center.x + finalX;
+		v.y = center.y + finalY;
 	}
-	
-	shape.scail_x = target_scale_x;
-	shape.scail_y = target_scale_y;
-	shape.radius = 5.f * (target_scale_y + target_scale_x);
-	
+
+	// Обновляем сохраненные значения
+	shape.scale.x = NewScale.x;
+	shape.scale.y = NewScale.y;
+
+	// Радиус тоже нужно обновить, если он используется для кликов
+	shape.radius *= std::max(relScaleX, relScaleY);
 }
 
-void Model::set_scaleVertexGlobal(size_t index, float global_scale_x, float global_scale_y, sf::Vector2f center)
+ShapeInfo* ModelEditor::getShape(size_t index)
 {
-	if (index >= shapes.size()) return;
-	Shape_in_VertexArray& shape = shapes[index];
-
-	scaleVerticesGlobal(index, global_scale_x, global_scale_y, center);
+	if (index >= size()) { return nullptr; }
+	return &data.shapes[index];
 }
 
-void Model::set_point_color(size_t index_point, sf::Color color){
-	Vertarr[index_point].color = color;
+Model::Model(): editor(data){}
+
+void Model::update(sf::Vector2f mouse_pos){
+	editor.changed.reset();
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)) { render.buildForm(editor.getData()); }
 }
 
+void ModelRender::buildForm(const ModelData& data){
+	size_t count = data.vertices.size();
+	va.resize(count);
+	for (size_t i = 0; i < count;i++) { va[i] = data.vertices[i]; }
 
+}
+
+void ModelRender::draw(sf::RenderWindow& window){window.draw(va);}

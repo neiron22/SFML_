@@ -23,7 +23,7 @@ void Size_controller::update(sf::Vector2f mouse_pos, bool LKM , float mouse_skro
 		size_slider_y.update(mouse_pos, mouse_skroll);
 
 
-		size_multipler_angle.update(mouse_pos, mouse_skroll, LKM, 0.f, 15.f);
+		size_multipler_angle.update();
 	}
 }
 
